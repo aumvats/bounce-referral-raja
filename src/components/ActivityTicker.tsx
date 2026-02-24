@@ -65,7 +65,7 @@ export default function ActivityTicker() {
         setCurrentIndex((i) => (i + 1) % count)
         setVisible(true)
       }, 250)
-    }, 5000)
+    }, 8000)
     return () => clearInterval(interval)
   }, [count])
 
