@@ -177,6 +177,6 @@ export const faqs: FAQItem[] = [
   },
   {
     question: 'Do per-referral rewards still apply during the contest?',
-    answer: 'Absolutely! You still earn ₹300 Free Gold (or 1 Day + 100 KM Free) for every successful referral. Contest prizes are on top of these rewards.',
+    answer: 'Absolutely! You still earn ₹300 Free (or 1 Day + 100 KM Free) for every successful referral. Contest prizes are on top of these rewards.',
   },
 ]
