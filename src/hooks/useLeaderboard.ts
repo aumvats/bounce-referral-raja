@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import type { LeaderboardEntry } from '@/types/referral-raja'
 
-const METABASE_URL =
-  'https://metabaselatest-dy7gqwqrma-el.a.run.app/api/public/card/162e10a2-5971-47aa-a276-aef59f78198f/query/json'
+// Proxy through our own API route to avoid CORS issues on mobile
+const LEADERBOARD_URL = '/api/leaderboard'
 
 interface MetabaseRow {
   rank: number
@@ -44,7 +44,7 @@ export function useLeaderboard() {
 
     async function fetchData() {
       try {
-        const res = await fetch(METABASE_URL)
+        const res = await fetch(LEADERBOARD_URL)
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         const rows: MetabaseRow[] = await res.json()
 
