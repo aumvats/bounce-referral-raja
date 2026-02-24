@@ -12,15 +12,18 @@ export default function StickyBottomCTA() {
 
       {/* CTA container */}
       <div className="bg-[#F5F5F5] px-4 pb-5 pt-1">
-        <button
-          className="w-full py-3.5 rounded-2xl font-bold text-[15px] text-white tracking-wide transition-all duration-200 active:scale-[0.98]"
+        <a
+          href="https://bouncedaily.link/refer"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full py-3.5 rounded-2xl font-bold text-[15px] text-white tracking-wide transition-all duration-200 active:scale-[0.98] text-center"
           style={{
             background: 'linear-gradient(135deg, #E53935 0%, #C62828 100%)',
             boxShadow: '0 4px 16px rgba(229, 57, 53, 0.4), 0 1px 3px rgba(0,0,0,0.1)',
           }}
         >
           {t('cta.referNow')}
-        </button>
+        </a>
       </div>
     </div>
   )
