@@ -5,6 +5,7 @@ import { Drawer } from 'vaul'
 import { Check, Globe } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { LANGUAGES, type Locale } from '@/data/translations'
+import { track } from '@/lib/track'
 
 interface LanguageSelectorProps {
   open?: boolean
@@ -19,6 +20,9 @@ export default function LanguageSelector({ open, onOpenChange }: LanguageSelecto
   const isOpen = isFirstVisit || (open ?? false)
 
   const handleConfirm = () => {
+    if (selected !== locale) {
+      track('language_change', { from: locale, to: selected })
+    }
     setLocale(selected)
     onOpenChange?.(false)
   }

@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { howItWorks, campaignRules, faqs } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import type { TranslationKey } from '@/data/translations'
+import { track } from '@/lib/track'
 
 export default function RulesSection() {
   return (
@@ -90,7 +91,7 @@ function CampaignRulesCard() {
 
       {campaignRules.length > 5 && (
         <button
-          onClick={() => setShowAll(!showAll)}
+          onClick={() => { if (!showAll) track('rules_expand'); setShowAll(!showAll) }}
           className="mt-3 text-[12px] font-semibold text-[#E53935] flex items-center gap-1 active:opacity-70"
         >
           {showAll ? t('rules.showLess') : t('rules.showAll', { count: campaignRules.length })}
@@ -116,7 +117,7 @@ function FAQCard() {
         {t('rules.faq')}
       </h3>
 
-      <Accordion.Root type="single" collapsible>
+      <Accordion.Root type="single" collapsible onValueChange={(val) => { if (val) track('faq_open', { faq: val }) }}>
         {faqIndices.map((faqNum) => (
           <Accordion.Item
             key={faqNum}

@@ -6,6 +6,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { campaign } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useLeaderboard } from '@/hooks/useLeaderboard'
+import { track } from '@/lib/track'
 import type { LeaderboardEntry } from '@/types/referral-raja'
 
 type LeaderboardTab = 'weekly' | 'campaign'
@@ -59,7 +60,7 @@ export default function LeaderboardSection() {
           <div className="flex items-center bg-gray-100 rounded-full p-0.5">
             <button
               type="button"
-              onClick={() => setTab('weekly')}
+              onClick={() => { track('leaderboard_tab', { tab: 'weekly' }); setTab('weekly') }}
               className={cn(
                 'px-3 py-1 rounded-full text-[10px] font-bold transition-all duration-200',
                 tab === 'weekly'
@@ -71,7 +72,7 @@ export default function LeaderboardSection() {
             </button>
             <button
               type="button"
-              onClick={() => setTab('campaign')}
+              onClick={() => { track('leaderboard_tab', { tab: 'campaign' }); setTab('campaign') }}
               className={cn(
                 'px-3 py-1 rounded-full text-[10px] font-bold transition-all duration-200',
                 tab === 'campaign'

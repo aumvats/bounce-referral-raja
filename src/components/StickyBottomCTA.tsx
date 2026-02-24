@@ -1,6 +1,7 @@
 'use client'
 
 import { useLanguage } from '@/contexts/LanguageContext'
+import { track } from '@/lib/track'
 
 export default function StickyBottomCTA() {
   const { t } = useLanguage()
@@ -16,6 +17,7 @@ export default function StickyBottomCTA() {
           href="https://bouncedaily.link/refer"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track('cta_click', { cta: 'sticky_bottom' })}
           className="block w-full py-3.5 rounded-2xl font-bold text-[15px] text-white tracking-wide transition-all duration-200 active:scale-[0.98] text-center"
           style={{
             background: 'linear-gradient(135deg, #E53935 0%, #C62828 100%)',

@@ -1,7 +1,9 @@
 'use client'
 
+import { useRef } from 'react'
 import { winners, pastCampaignWinners, socialProof } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { track } from '@/lib/track'
 import AnimatedCounter from './AnimatedCounter'
 
 export default function WinnersSection() {
@@ -63,7 +65,7 @@ export default function WinnersSection() {
             {t('winners.hallOfFame')}
           </p>
 
-          <div className="flex gap-2.5 overflow-x-auto no-scrollbar -mx-4 px-4 pb-1">
+          <div className="flex gap-2.5 overflow-x-auto no-scrollbar -mx-4 px-4 pb-1" onScroll={(e) => { const el = e.currentTarget; if (el.scrollLeft > 30 && !el.dataset.tracked) { el.dataset.tracked = '1'; track('winners_scroll') } }}>
             {pastCampaignWinners.map((winner, i) => (
               <div
                 key={i}

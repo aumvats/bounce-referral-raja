@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext'
+import { track } from '@/lib/track'
 import LanguageSelector from './LanguageSelector'
 import HeroSection from './HeroSection'
 import ActivityTicker from './ActivityTicker'
@@ -15,6 +16,10 @@ import StickyBottomCTA from './StickyBottomCTA'
 function ReferralRajaContent() {
   const { locale } = useLanguage()
   const [langSelectorOpen, setLangSelectorOpen] = useState(false)
+
+  useEffect(() => {
+    track('page_view')
+  }, [])
 
   return (
     <div className={`min-h-screen bg-[#F5F5F5] flex justify-center lang-${locale}`}>

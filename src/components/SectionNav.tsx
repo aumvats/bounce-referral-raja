@@ -5,6 +5,7 @@ import type { SectionId } from '@/types/referral-raja'
 import type { TranslationKey } from '@/data/translations'
 import { cn } from '@/lib/utils'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { track } from '@/lib/track'
 
 const sections: { id: SectionId; icon: string; labelKey: TranslationKey }[] = [
   { id: 'leaderboard', icon: '🏆', labelKey: 'nav.leaderboard' },
@@ -31,6 +32,7 @@ export default function SectionNav() {
           if (entry.isIntersecting) {
             const id = entry.target.id.replace('section-', '') as SectionId
             setActive(id)
+            track('section_view', { section: id })
           }
         })
       },
@@ -42,6 +44,7 @@ export default function SectionNav() {
   }, [])
 
   const handleTap = (id: SectionId) => {
+    track('section_nav_tap', { section: id })
     setActive(id)
     document.getElementById(`section-${id}`)?.scrollIntoView({
       behavior: 'smooth',
