@@ -1,7 +1,5 @@
-'use client'
-
-import ReferralRajaAppV2 from '@/components/v2/ReferralRajaAppV2'
+import { redirect } from 'next/navigation'
 
 export default function V2Page() {
-  return <ReferralRajaAppV2 />
+  redirect('/')
 }
