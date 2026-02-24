@@ -106,7 +106,7 @@ const en = {
   'howItWorks.2.title': 'Friend Signs Up & Rides',
   'howItWorks.2.description': 'KYC + first rental',
   'howItWorks.3.title': 'You Earn Rewards',
-  'howItWorks.3.description': '₹300 Gold or 1 Day + 100KM',
+  'howItWorks.3.description': '1 Day + 100KM Free',
   'howItWorks.4.title': 'Compete & Win Big',
   'howItWorks.4.description': 'Weekly ₹5K + Monthly ₹30K',
 
@@ -134,7 +134,7 @@ const en = {
   'faq.5.question': 'What if there\'s a tie?',
   'faq.5.answer': 'If two riders have the same referral count, the one who reached that count first wins. Timestamps are tracked automatically.',
   'faq.6.question': 'Do per-referral rewards still apply during the contest?',
-  'faq.6.answer': 'Absolutely! You still earn ₹300 Free Gold (or 1 Day + 100 KM Free) for every successful referral. Contest prizes are on top of these rewards.',
+  'faq.6.answer': 'Absolutely! You still earn 1 Day + 100 KM Free for every successful referral. Contest prizes are additional to these rewards.',
 
   // Language selector
   'langSelector.title': 'Choose Your Language',
@@ -156,7 +156,7 @@ const en = {
   'prizes.earnedFrom': 'Earned from {count} referrals',
   'prizes.nextReferral': '+₹300 for your next referral',
   'prizes.shareEarn': 'SHARE & EARN ₹300 →',
-  'prizes.earnedFootnote': '₹300 Free Gold credited for every successful referral',
+  'prizes.earnedFootnote': '1 Day + 100 KM Free credited for every successful referral',
   'prizes.yourJourney': 'Your Journey',
   'prizes.moreToGo': '{count} more!',
   'prizes.thisWeekPrizes': "This Week's Prizes",
@@ -174,7 +174,7 @@ const en = {
 
   // V2 — Milestones
   'milestone.1.label': 'First Reward',
-  'milestone.1.reward': '₹300 Gold',
+  'milestone.1.reward': '1 Day + 100KM',
   'milestone.3.label': '₹900 Earned',
   'milestone.3.reward': 'Cumulative',
   'milestone.5.label': 'Halfway!',
@@ -274,7 +274,7 @@ const kn: TranslationMap = {
   'howItWorks.2.title': 'ಸ್ನೇಹಿತ ಸೈನ್ ಅಪ್ & ರೈಡ್ ಮಾಡುತ್ತಾರೆ',
   'howItWorks.2.description': 'KYC + ಮೊದಲ ಬಾಡಿಗೆ',
   'howItWorks.3.title': 'ನೀವು ಬಹುಮಾನ ಗಳಿಸಿ',
-  'howItWorks.3.description': '₹300 ಗೋಲ್ಡ್ ಅಥವಾ 1 ದಿನ + 100KM',
+  'howItWorks.3.description': '1 ದಿನ + 100KM ಉಚಿತ',
   'howItWorks.4.title': 'ಸ್ಪರ್ಧಿಸಿ & ದೊಡ್ಡದು ಗೆಲ್ಲಿ',
   'howItWorks.4.description': 'ವಾರಕ್ಕೆ ₹5K + ತಿಂಗಳಿಗೆ ₹30K',
 
@@ -300,7 +300,7 @@ const kn: TranslationMap = {
   'faq.5.question': 'ಟೈ ಆದರೆ ಏನಾಗುತ್ತದೆ?',
   'faq.5.answer': 'ಇಬ್ಬರು ರೈಡರ್‌ಗಳಿಗೆ ಒಂದೇ ರೆಫರಲ್ ಎಣಿಕೆ ಇದ್ದರೆ, ಮೊದಲು ತಲುಪಿದವರು ಗೆಲ್ಲುತ್ತಾರೆ.',
   'faq.6.question': 'ಸ್ಪರ್ಧೆ ಸಮಯದಲ್ಲಿ ಪ್ರತಿ-ರೆಫರಲ್ ಬಹುಮಾನಗಳು ಅನ್ವಯವಾಗುತ್ತವೆಯೇ?',
-  'faq.6.answer': 'ಖಂಡಿತ! ಪ್ರತಿ ಯಶಸ್ವಿ ರೆಫರಲ್‌ಗೆ ನೀವು ₹300 ಫ್ರೀ ಗೋಲ್ಡ್ (ಅಥವಾ 1 ದಿನ + 100 KM ಉಚಿತ) ಗಳಿಸುತ್ತೀರಿ. ಸ್ಪರ್ಧೆ ಬಹುಮಾನಗಳು ಇವುಗಳ ಮೇಲೆ ಇರುತ್ತವೆ.',
+  'faq.6.answer': 'ಖಂಡಿತ! ಪ್ರತಿ ಯಶಸ್ವಿ ರೆಫರಲ್‌ಗೆ ನೀವು 1 ದಿನ + 100 KM ಉಚಿತ ಗಳಿಸುತ್ತೀರಿ. ಸ್ಪರ್ಧೆ ಬಹುಮಾನಗಳು ಇವುಗಳ ಜೊತೆಗೆ ಹೆಚ್ಚುವರಿಯಾಗಿ.',
 
   'langSelector.title': 'ನಿಮ್ಮ ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ',
   'langSelector.subtitle': 'ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ',
@@ -321,7 +321,7 @@ const kn: TranslationMap = {
   'prizes.earnedFrom': '{count} ರೆಫರಲ್‌ಗಳಿಂದ ಗಳಿಸಿದ್ದು',
   'prizes.nextReferral': 'ನಿಮ್ಮ ಮುಂದಿನ ರೆಫರಲ್‌ಗೆ +₹300',
   'prizes.shareEarn': 'ಹಂಚಿ & ₹300 ಗಳಿಸಿ →',
-  'prizes.earnedFootnote': 'ಪ್ರತಿ ಯಶಸ್ವಿ ರೆಫರಲ್‌ಗೆ ₹300 ಫ್ರೀ ಗೋಲ್ಡ್ ಕ್ರೆಡಿಟ್',
+  'prizes.earnedFootnote': 'ಪ್ರತಿ ಯಶಸ್ವಿ ರೆಫರಲ್‌ಗೆ 1 ದಿನ + 100 KM ಉಚಿತ ಕ್ರೆಡಿಟ್',
   'prizes.yourJourney': 'ನಿಮ್ಮ ಪ್ರಯಾಣ',
   'prizes.moreToGo': '{count} ಇನ್ನೂ ಬೇಕು!',
   'prizes.thisWeekPrizes': 'ಈ ವಾರದ ಬಹುಮಾನಗಳು',
@@ -339,7 +339,7 @@ const kn: TranslationMap = {
 
   // V2 — Milestones
   'milestone.1.label': 'ಮೊದಲ ಬಹುಮಾನ',
-  'milestone.1.reward': '₹300 ಗೋಲ್ಡ್',
+  'milestone.1.reward': '1 ದಿನ + 100KM',
   'milestone.3.label': '₹900 ಗಳಿಕೆ',
   'milestone.3.reward': 'ಒಟ್ಟು',
   'milestone.5.label': 'ಅರ್ಧ ದಾರಿ!',
@@ -436,7 +436,7 @@ const te: TranslationMap = {
   'howItWorks.2.title': 'స్నేహితుడు సైన్ అప్ & రైడ్ చేస్తారు',
   'howItWorks.2.description': 'KYC + మొదటి రెంటల్',
   'howItWorks.3.title': 'మీరు రివార్డ్‌లు సంపాదించండి',
-  'howItWorks.3.description': '₹300 గోల్డ్ లేదా 1 రోజు + 100KM',
+  'howItWorks.3.description': '1 రోజు + 100KM ఉచితం',
   'howItWorks.4.title': 'పోటీ పడండి & పెద్దగా గెలవండి',
   'howItWorks.4.description': 'వారానికి ₹5K + నెలకు ₹30K',
 
@@ -462,7 +462,7 @@ const te: TranslationMap = {
   'faq.5.question': 'టై అయితే ఏమవుతుంది?',
   'faq.5.answer': 'ఇద్దరు రైడర్లకు ఒకే రెఫరల్ కౌంట్ ఉంటే, ముందుగా చేరుకున్నవారు గెలుస్తారు.',
   'faq.6.question': 'పోటీ సమయంలో రెఫరల్ రివార్డ్‌లు వర్తిస్తాయా?',
-  'faq.6.answer': 'ఖచ్చితంగా! ప్రతి విజయవంతమైన రెఫరల్‌కు మీరు ₹300 ఫ్రీ గోల్డ్ (లేదా 1 రోజు + 100 KM ఉచితం) సంపాదిస్తారు. పోటీ బహుమతులు వీటి పైన ఉంటాయి.',
+  'faq.6.answer': 'ఖచ్చితంగా! ప్రతి విజయవంతమైన రెఫరల్‌కు మీరు 1 రోజు + 100 KM ఉచితం సంపాదిస్తారు. పోటీ బహుమతులు వీటికి అదనంగా ఉంటాయి.',
 
   'langSelector.title': 'మీ భాష ఎంచుకోండి',
   'langSelector.subtitle': 'మీ ప్రాధాన్య భాష ఎంచుకోండి',
@@ -483,7 +483,7 @@ const te: TranslationMap = {
   'prizes.earnedFrom': '{count} రెఫరల్‌ల నుండి సంపాదించినది',
   'prizes.nextReferral': 'మీ తదుపరి రెఫరల్‌కు +₹300',
   'prizes.shareEarn': 'షేర్ చేయండి & ₹300 సంపాదించండి →',
-  'prizes.earnedFootnote': 'ప్రతి విజయవంతమైన రెఫరల్‌కు ₹300 ఫ్రీ గోల్డ్ క్రెడిట్',
+  'prizes.earnedFootnote': 'ప్రతి విజయవంతమైన రెఫరల్‌కు 1 రోజు + 100 KM ఉచితం క్రెడిట్',
   'prizes.yourJourney': 'మీ ప్రయాణం',
   'prizes.moreToGo': '{count} ఇంకా కావాలి!',
   'prizes.thisWeekPrizes': 'ఈ వారపు బహుమతులు',
@@ -501,7 +501,7 @@ const te: TranslationMap = {
 
   // V2 — Milestones
   'milestone.1.label': 'మొదటి రివార్డ్',
-  'milestone.1.reward': '₹300 గోల్డ్',
+  'milestone.1.reward': '1 రోజు + 100KM',
   'milestone.3.label': '₹900 సంపాదన',
   'milestone.3.reward': 'సంచిత',
   'milestone.5.label': 'సగం దారి!',
@@ -598,7 +598,7 @@ const hi: TranslationMap = {
   'howItWorks.2.title': 'दोस्त साइन अप करे और राइड ले',
   'howItWorks.2.description': 'KYC + पहली बुकिंग',
   'howItWorks.3.title': 'आप रिवॉर्ड कमाएं',
-  'howItWorks.3.description': '₹300 गोल्ड या 1 दिन + 100KM',
+  'howItWorks.3.description': '1 दिन + 100KM फ्री',
   'howItWorks.4.title': 'प्रतिस्पर्धा करें और बड़ा जीतें',
   'howItWorks.4.description': 'हर हफ्ते ₹5K + हर महीने ₹30K',
 
@@ -624,7 +624,7 @@ const hi: TranslationMap = {
   'faq.5.question': 'अगर टाई हो जाए तो?',
   'faq.5.answer': 'अगर दो राइडर्स के रेफरल बराबर हैं, तो जो पहले उस संख्या पर पहुंचा वो जीतता है.',
   'faq.6.question': 'क्या प्रतियोगिता के दौरान प्रति-रेफरल रिवॉर्ड मिलते रहेंगे?',
-  'faq.6.answer': 'बिल्कुल! हर सफल रेफरल पर आप ₹300 फ्री गोल्ड (या 1 दिन + 100 KM फ्री) कमाते रहेंगे. प्रतियोगिता प्राइज़ इनके ऊपर हैं.',
+  'faq.6.answer': 'बिल्कुल! हर सफल रेफरल पर आप 1 दिन + 100 KM फ्री कमाते रहेंगे. प्रतियोगिता प्राइज़ इनके अतिरिक्त हैं.',
 
   'langSelector.title': 'अपनी भाषा चुनें',
   'langSelector.subtitle': 'अपनी पसंदीदा भाषा चुनें',
@@ -645,7 +645,7 @@ const hi: TranslationMap = {
   'prizes.earnedFrom': '{count} रेफरल से कमाया',
   'prizes.nextReferral': 'आपके अगले रेफरल पर +₹300',
   'prizes.shareEarn': 'शेयर करें & ₹300 कमाएं →',
-  'prizes.earnedFootnote': 'हर सफल रेफरल पर ₹300 फ्री गोल्ड क्रेडिट',
+  'prizes.earnedFootnote': 'हर सफल रेफरल पर 1 दिन + 100 KM फ्री क्रेडिट',
   'prizes.yourJourney': 'आपका सफर',
   'prizes.moreToGo': '{count} और चाहिए!',
   'prizes.thisWeekPrizes': 'इस हफ्ते के प्राइज़',
@@ -663,7 +663,7 @@ const hi: TranslationMap = {
 
   // V2 — Milestones
   'milestone.1.label': 'पहला रिवॉर्ड',
-  'milestone.1.reward': '₹300 गोल्ड',
+  'milestone.1.reward': '1 दिन + 100KM',
   'milestone.3.label': '₹900 कमाई',
   'milestone.3.reward': 'संचयी',
   'milestone.5.label': 'आधा रास्ता!',
@@ -760,7 +760,7 @@ const bn: TranslationMap = {
   'howItWorks.2.title': 'বন্ধু সাইন আপ করে ও রাইড নেয়',
   'howItWorks.2.description': 'KYC + প্রথম ভাড়া',
   'howItWorks.3.title': 'আপনি রিওয়ার্ড অর্জন করুন',
-  'howItWorks.3.description': '₹300 গোল্ড অথবা 1 দিন + 100KM',
+  'howItWorks.3.description': '1 দিন + 100KM ফ্রি',
   'howItWorks.4.title': 'প্রতিযোগিতা করুন ও বড় জিতুন',
   'howItWorks.4.description': 'সাপ্তাহিক ₹5K + মাসিক ₹30K',
 
@@ -786,7 +786,7 @@ const bn: TranslationMap = {
   'faq.5.question': 'টাই হলে কী হবে?',
   'faq.5.answer': 'দুই রাইডারের রেফারেল সমান হলে, যিনি আগে সেই সংখ্যায় পৌঁছেছেন তিনি জিতবেন।',
   'faq.6.question': 'প্রতিযোগিতার সময় কি প্রতি-রেফারেল রিওয়ার্ড পাওয়া যাবে?',
-  'faq.6.answer': 'অবশ্যই! প্রতিটি সফল রেফারেলে আপনি ₹300 ফ্রি গোল্ড (অথবা 1 দিন + 100 KM ফ্রি) অর্জন করবেন। প্রতিযোগিতার পুরস্কার এগুলোর উপরে।',
+  'faq.6.answer': 'অবশ্যই! প্রতিটি সফল রেফারেলে আপনি 1 দিন + 100 KM ফ্রি অর্জন করবেন। প্রতিযোগিতার পুরস্কার এগুলোর অতিরিক্ত।',
 
   'langSelector.title': 'আপনার ভাষা বেছে নিন',
   'langSelector.subtitle': 'আপনার পছন্দের ভাষা নির্বাচন করুন',
@@ -807,7 +807,7 @@ const bn: TranslationMap = {
   'prizes.earnedFrom': '{count}টি রেফারেল থেকে অর্জিত',
   'prizes.nextReferral': 'আপনার পরবর্তী রেফারেলে +₹300',
   'prizes.shareEarn': 'শেয়ার করুন & ₹300 অর্জন করুন →',
-  'prizes.earnedFootnote': 'প্রতিটি সফল রেফারেলে ₹300 ফ্রি গোল্ড ক্রেডিট',
+  'prizes.earnedFootnote': 'প্রতিটি সফল রেফারেলে 1 দিন + 100 KM ফ্রি ক্রেডিট',
   'prizes.yourJourney': 'আপনার যাত্রা',
   'prizes.moreToGo': 'আরো {count}টি বাকি!',
   'prizes.thisWeekPrizes': 'এই সপ্তাহের পুরস্কার',
@@ -825,7 +825,7 @@ const bn: TranslationMap = {
 
   // V2 — Milestones
   'milestone.1.label': 'প্রথম পুরস্কার',
-  'milestone.1.reward': '₹300 গোল্ড',
+  'milestone.1.reward': '1 দিন + 100KM',
   'milestone.3.label': '₹900 অর্জিত',
   'milestone.3.reward': 'সঞ্চিত',
   'milestone.5.label': 'অর্ধেক পথ!',

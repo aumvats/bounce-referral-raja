@@ -149,7 +149,7 @@ export const campaignRules: string[] = [
 export const howItWorks = [
   { step: 1, icon: '📱', title: 'Refer a Friend', description: 'Share from Bounce app' },
   { step: 2, icon: '✅', title: 'Friend Signs Up & Rides', description: 'KYC + first rental' },
-  { step: 3, icon: '🎁', title: 'You Earn Rewards', description: '₹300 Gold or 1 Day + 100KM' },
+  { step: 3, icon: '🎁', title: 'You Earn Rewards', description: '1 Day + 100KM Free' },
   { step: 4, icon: '🏆', title: 'Compete & Win Big', description: 'Weekly ₹5K + Monthly ₹30K' },
 ]
 
