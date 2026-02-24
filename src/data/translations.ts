@@ -135,6 +135,55 @@ const en = {
   'langSelector.title': 'Choose Your Language',
   'langSelector.subtitle': 'Select your preferred language',
   'langSelector.confirm': 'Continue',
+
+  // V2 — Hero
+  'hero.valueProp1': '₹300 for every friend who rides',
+  'hero.valueProp2': '+ Win up to ₹5,000 this week',
+  'hero.shareLink': 'Share Your Link →',
+  'hero.weekEndsIn': 'Week {week} ends in',
+
+  // V2 — Status card
+  'status.weekLabel': 'Week {week}',
+  'status.referNow': 'Refer Now →',
+
+  // V2 — Prizes
+  'prizes.yourEarnings': 'Your Earnings',
+  'prizes.earnedFrom': 'Earned from {count} referrals',
+  'prizes.nextReferral': '+₹300 for your next referral',
+  'prizes.shareEarn': 'SHARE & EARN ₹300 →',
+  'prizes.earnedFootnote': '₹300 Free Gold credited for every successful referral',
+  'prizes.yourJourney': 'Your Journey',
+  'prizes.moreToGo': '{count} more!',
+  'prizes.thisWeekPrizes': "This Week's Prizes",
+  'prizes.currentLeader': 'Current leader: {count} refs',
+  'prizes.qualifiedCount': '{count} riders qualified this week',
+  'prizes.moreToQualify': '{count} more to qualify!',
+  'prizes.lastRaja': 'Last Raja: {name} from {city}',
+  'prizes.lastRajaStats': '{refs} referrals → won ₹{prize}',
+  'prizes.nudgeMessage': "You're {count} referrals from the weekly lucky draw!",
+  'prizes.nudgeCta': 'REFER NOW & EARN ₹300 →',
+  'prizes.allRewardsStack': 'All rewards stack — contest prizes are ON TOP of per-referral rewards',
+
+  // V2 — Leaderboard
+  'leaderboard.nudge': 'Only {gap} referrals from #{rank} — share now!',
+
+  // V2 — Milestones
+  'milestone.1.label': 'First Reward',
+  'milestone.1.reward': '₹300 Gold',
+  'milestone.3.label': '₹900 Earned',
+  'milestone.3.reward': 'Cumulative',
+  'milestone.5.label': 'Halfway!',
+  'milestone.5.reward': 'Lucky Draw',
+  'milestone.7.label': 'Lucky Draw',
+  'milestone.7.reward': '₹1,000 Draw',
+  'milestone.10.label': '₹3,000 Total',
+  'milestone.10.reward': 'Keep going!',
+  'milestone.15.label': 'Top 5',
+  'milestone.15.reward': 'Contender',
+  'milestone.20.label': '₹6,000 Total',
+  'milestone.20.reward': 'Amazing!',
+  'milestone.30.label': 'Mega Draw',
+  'milestone.30.reward': '₹5,000 Draw',
 } as const
 
 export type TranslationKey = keyof typeof en
@@ -246,6 +295,55 @@ const kn: TranslationMap = {
   'langSelector.title': 'ನಿಮ್ಮ ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ',
   'langSelector.subtitle': 'ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ',
   'langSelector.confirm': 'ಮುಂದುವರಿಸಿ',
+
+  // V2 — Hero
+  'hero.valueProp1': 'ರೈಡ್ ಮಾಡುವ ಪ್ರತಿ ಸ್ನೇಹಿತನಿಗೆ ₹300',
+  'hero.valueProp2': '+ ಈ ವಾರ ₹5,000 ವರೆಗೆ ಗೆಲ್ಲಿ',
+  'hero.shareLink': 'ನಿಮ್ಮ ಲಿಂಕ್ ಹಂಚಿ →',
+  'hero.weekEndsIn': 'ವಾರ {week} ಮುಗಿಯುವುದು',
+
+  // V2 — Status card
+  'status.weekLabel': 'ವಾರ {week}',
+  'status.referNow': 'ಈಗ ರೆಫರ್ ಮಾಡಿ →',
+
+  // V2 — Prizes
+  'prizes.yourEarnings': 'ನಿಮ್ಮ ಗಳಿಕೆ',
+  'prizes.earnedFrom': '{count} ರೆಫರಲ್‌ಗಳಿಂದ ಗಳಿಸಿದ್ದು',
+  'prizes.nextReferral': 'ನಿಮ್ಮ ಮುಂದಿನ ರೆಫರಲ್‌ಗೆ +₹300',
+  'prizes.shareEarn': 'ಹಂಚಿ & ₹300 ಗಳಿಸಿ →',
+  'prizes.earnedFootnote': 'ಪ್ರತಿ ಯಶಸ್ವಿ ರೆಫರಲ್‌ಗೆ ₹300 ಫ್ರೀ ಗೋಲ್ಡ್ ಕ್ರೆಡಿಟ್',
+  'prizes.yourJourney': 'ನಿಮ್ಮ ಪ್ರಯಾಣ',
+  'prizes.moreToGo': '{count} ಇನ್ನೂ ಬೇಕು!',
+  'prizes.thisWeekPrizes': 'ಈ ವಾರದ ಬಹುಮಾನಗಳು',
+  'prizes.currentLeader': 'ಪ್ರಸ್ತುತ ಲೀಡರ್: {count} ರೆಫ್ಸ್',
+  'prizes.qualifiedCount': 'ಈ ವಾರ {count} ರೈಡರ್‌ಗಳು ಅರ್ಹತೆ ಪಡೆದಿದ್ದಾರೆ',
+  'prizes.moreToQualify': 'ಅರ್ಹತೆಗೆ {count} ಇನ್ನೂ ಬೇಕು!',
+  'prizes.lastRaja': 'ಕೊನೆಯ ರಾಜಾ: {city} ಯಿಂದ {name}',
+  'prizes.lastRajaStats': '{refs} ರೆಫರಲ್‌ಗಳು → ₹{prize} ಗೆದ್ದರು',
+  'prizes.nudgeMessage': 'ವಾರದ ಲಕ್ಕಿ ಡ್ರಾಗೆ ನಿಮಗೆ {count} ರೆಫರಲ್‌ಗಳು ಬಾಕಿ!',
+  'prizes.nudgeCta': 'ಈಗ ರೆಫರ್ ಮಾಡಿ & ₹300 ಗಳಿಸಿ →',
+  'prizes.allRewardsStack': 'ಎಲ್ಲಾ ಬಹುಮಾನಗಳು ಸೇರುತ್ತವೆ — ಸ್ಪರ್ಧೆ ಬಹುಮಾನಗಳು ಪ್ರತಿ-ರೆಫರಲ್ ಬಹುಮಾನಗಳ ಮೇಲೆ',
+
+  // V2 — Leaderboard
+  'leaderboard.nudge': '#{rank} ಗೆ ಕೇವಲ {gap} ರೆಫರಲ್‌ಗಳು — ಈಗ ಹಂಚಿ!',
+
+  // V2 — Milestones
+  'milestone.1.label': 'ಮೊದಲ ಬಹುಮಾನ',
+  'milestone.1.reward': '₹300 ಗೋಲ್ಡ್',
+  'milestone.3.label': '₹900 ಗಳಿಕೆ',
+  'milestone.3.reward': 'ಒಟ್ಟು',
+  'milestone.5.label': 'ಅರ್ಧ ದಾರಿ!',
+  'milestone.5.reward': 'ಲಕ್ಕಿ ಡ್ರಾ',
+  'milestone.7.label': 'ಲಕ್ಕಿ ಡ್ರಾ',
+  'milestone.7.reward': '₹1,000 ಡ್ರಾ',
+  'milestone.10.label': '₹3,000 ಒಟ್ಟು',
+  'milestone.10.reward': 'ಮುಂದುವರಿಸಿ!',
+  'milestone.15.label': 'ಟಾಪ್ 5',
+  'milestone.15.reward': 'ಸ್ಪರ್ಧಿ',
+  'milestone.20.label': '₹6,000 ಒಟ್ಟು',
+  'milestone.20.reward': 'ಅದ್ಭುತ!',
+  'milestone.30.label': 'ಮೆಗಾ ಡ್ರಾ',
+  'milestone.30.reward': '₹5,000 ಡ್ರಾ',
 }
 
 // ─── Telugu ────────────────────────────────────────────────────
@@ -354,6 +452,55 @@ const te: TranslationMap = {
   'langSelector.title': 'మీ భాష ఎంచుకోండి',
   'langSelector.subtitle': 'మీ ప్రాధాన్య భాష ఎంచుకోండి',
   'langSelector.confirm': 'కొనసాగించు',
+
+  // V2 — Hero
+  'hero.valueProp1': 'రైడ్ చేసే ప్రతి స్నేహితుడికి ₹300',
+  'hero.valueProp2': '+ ఈ వారం ₹5,000 వరకు గెలవండి',
+  'hero.shareLink': 'మీ లింక్ షేర్ చేయండి →',
+  'hero.weekEndsIn': 'వారం {week} ముగుస్తుంది',
+
+  // V2 — Status card
+  'status.weekLabel': 'వారం {week}',
+  'status.referNow': 'ఇప్పుడు రెఫర్ చేయండి →',
+
+  // V2 — Prizes
+  'prizes.yourEarnings': 'మీ సంపాదన',
+  'prizes.earnedFrom': '{count} రెఫరల్‌ల నుండి సంపాదించినది',
+  'prizes.nextReferral': 'మీ తదుపరి రెఫరల్‌కు +₹300',
+  'prizes.shareEarn': 'షేర్ చేయండి & ₹300 సంపాదించండి →',
+  'prizes.earnedFootnote': 'ప్రతి విజయవంతమైన రెఫరల్‌కు ₹300 ఫ్రీ గోల్డ్ క్రెడిట్',
+  'prizes.yourJourney': 'మీ ప్రయాణం',
+  'prizes.moreToGo': '{count} ఇంకా కావాలి!',
+  'prizes.thisWeekPrizes': 'ఈ వారపు బహుమతులు',
+  'prizes.currentLeader': 'ప్రస్తుత లీడర్: {count} రెఫ్స్',
+  'prizes.qualifiedCount': 'ఈ వారం {count} రైడర్లు అర్హత సాధించారు',
+  'prizes.moreToQualify': 'అర్హత సాధించడానికి {count} ఇంకా కావాలి!',
+  'prizes.lastRaja': 'గత రాజా: {city} నుండి {name}',
+  'prizes.lastRajaStats': '{refs} రెఫరల్‌లు → ₹{prize} గెలిచారు',
+  'prizes.nudgeMessage': 'వారపు లక్కీ డ్రాకు మీకు {count} రెఫరల్‌లు బాకీ!',
+  'prizes.nudgeCta': 'ఇప్పుడు రెఫర్ చేయండి & ₹300 సంపాదించండి →',
+  'prizes.allRewardsStack': 'అన్ని రివార్డ్‌లు కలుస్తాయి — పోటీ బహుమతులు రెఫరల్ రివార్డ్‌ల పైన',
+
+  // V2 — Leaderboard
+  'leaderboard.nudge': '#{rank} కు కేవలం {gap} రెఫరల్‌లు — ఇప్పుడు షేర్ చేయండి!',
+
+  // V2 — Milestones
+  'milestone.1.label': 'మొదటి రివార్డ్',
+  'milestone.1.reward': '₹300 గోల్డ్',
+  'milestone.3.label': '₹900 సంపాదన',
+  'milestone.3.reward': 'సంచిత',
+  'milestone.5.label': 'సగం దారి!',
+  'milestone.5.reward': 'లక్కీ డ్రా',
+  'milestone.7.label': 'లక్కీ డ్రా',
+  'milestone.7.reward': '₹1,000 డ్రా',
+  'milestone.10.label': '₹3,000 మొత్తం',
+  'milestone.10.reward': 'కొనసాగించండి!',
+  'milestone.15.label': 'టాప్ 5',
+  'milestone.15.reward': 'పోటీదారు',
+  'milestone.20.label': '₹6,000 మొత్తం',
+  'milestone.20.reward': 'అద్భుతం!',
+  'milestone.30.label': 'మెగా డ్రా',
+  'milestone.30.reward': '₹5,000 డ్రా',
 }
 
 // ─── Hindi ─────────────────────────────────────────────────────
@@ -462,6 +609,55 @@ const hi: TranslationMap = {
   'langSelector.title': 'अपनी भाषा चुनें',
   'langSelector.subtitle': 'अपनी पसंदीदा भाषा चुनें',
   'langSelector.confirm': 'जारी रखें',
+
+  // V2 — Hero
+  'hero.valueProp1': 'राइड करने वाले हर दोस्त के लिए ₹300',
+  'hero.valueProp2': '+ इस हफ्ते ₹5,000 तक जीतें',
+  'hero.shareLink': 'अपना लिंक शेयर करें →',
+  'hero.weekEndsIn': 'हफ्ता {week} खत्म होगा',
+
+  // V2 — Status card
+  'status.weekLabel': 'हफ्ता {week}',
+  'status.referNow': 'अभी रेफर करें →',
+
+  // V2 — Prizes
+  'prizes.yourEarnings': 'आपकी कमाई',
+  'prizes.earnedFrom': '{count} रेफरल से कमाया',
+  'prizes.nextReferral': 'आपके अगले रेफरल पर +₹300',
+  'prizes.shareEarn': 'शेयर करें & ₹300 कमाएं →',
+  'prizes.earnedFootnote': 'हर सफल रेफरल पर ₹300 फ्री गोल्ड क्रेडिट',
+  'prizes.yourJourney': 'आपका सफर',
+  'prizes.moreToGo': '{count} और चाहिए!',
+  'prizes.thisWeekPrizes': 'इस हफ्ते के प्राइज़',
+  'prizes.currentLeader': 'मौजूदा लीडर: {count} रेफ्स',
+  'prizes.qualifiedCount': 'इस हफ्ते {count} राइडर्स ने क्वालिफाई किया',
+  'prizes.moreToQualify': 'क्वालिफाई करने के लिए {count} और चाहिए!',
+  'prizes.lastRaja': 'पिछले राजा: {city} से {name}',
+  'prizes.lastRajaStats': '{refs} रेफरल → ₹{prize} जीते',
+  'prizes.nudgeMessage': 'वीकली लकी ड्रॉ से आप {count} रेफरल दूर हैं!',
+  'prizes.nudgeCta': 'अभी रेफर करें & ₹300 कमाएं →',
+  'prizes.allRewardsStack': 'सभी रिवॉर्ड जुड़ते हैं — प्रतियोगिता प्राइज़ रेफरल रिवॉर्ड के ऊपर हैं',
+
+  // V2 — Leaderboard
+  'leaderboard.nudge': '#{rank} से सिर्फ {gap} रेफरल दूर — अभी शेयर करें!',
+
+  // V2 — Milestones
+  'milestone.1.label': 'पहला रिवॉर्ड',
+  'milestone.1.reward': '₹300 गोल्ड',
+  'milestone.3.label': '₹900 कमाई',
+  'milestone.3.reward': 'संचयी',
+  'milestone.5.label': 'आधा रास्ता!',
+  'milestone.5.reward': 'लकी ड्रॉ',
+  'milestone.7.label': 'लकी ड्रॉ',
+  'milestone.7.reward': '₹1,000 ड्रॉ',
+  'milestone.10.label': '₹3,000 कुल',
+  'milestone.10.reward': 'जारी रखें!',
+  'milestone.15.label': 'टॉप 5',
+  'milestone.15.reward': 'दावेदार',
+  'milestone.20.label': '₹6,000 कुल',
+  'milestone.20.reward': 'शानदार!',
+  'milestone.30.label': 'मेगा ड्रॉ',
+  'milestone.30.reward': '₹5,000 ड्रॉ',
 }
 
 // ─── Bengali ──────────────────────────────────────────────────
@@ -570,6 +766,55 @@ const bn: TranslationMap = {
   'langSelector.title': 'আপনার ভাষা বেছে নিন',
   'langSelector.subtitle': 'আপনার পছন্দের ভাষা নির্বাচন করুন',
   'langSelector.confirm': 'চালিয়ে যান',
+
+  // V2 — Hero
+  'hero.valueProp1': 'রাইড করা প্রতিটি বন্ধুর জন্য ₹300',
+  'hero.valueProp2': '+ এই সপ্তাহে ₹5,000 পর্যন্ত জিতুন',
+  'hero.shareLink': 'আপনার লিংক শেয়ার করুন →',
+  'hero.weekEndsIn': 'সপ্তাহ {week} শেষ হবে',
+
+  // V2 — Status card
+  'status.weekLabel': 'সপ্তাহ {week}',
+  'status.referNow': 'এখনই রেফার করুন →',
+
+  // V2 — Prizes
+  'prizes.yourEarnings': 'আপনার আয়',
+  'prizes.earnedFrom': '{count}টি রেফারেল থেকে অর্জিত',
+  'prizes.nextReferral': 'আপনার পরবর্তী রেফারেলে +₹300',
+  'prizes.shareEarn': 'শেয়ার করুন & ₹300 অর্জন করুন →',
+  'prizes.earnedFootnote': 'প্রতিটি সফল রেফারেলে ₹300 ফ্রি গোল্ড ক্রেডিট',
+  'prizes.yourJourney': 'আপনার যাত্রা',
+  'prizes.moreToGo': 'আরো {count}টি বাকি!',
+  'prizes.thisWeekPrizes': 'এই সপ্তাহের পুরস্কার',
+  'prizes.currentLeader': 'বর্তমান লিডার: {count} রেফ',
+  'prizes.qualifiedCount': 'এই সপ্তাহে {count} রাইডার যোগ্য হয়েছেন',
+  'prizes.moreToQualify': 'যোগ্য হতে আরো {count}টি দরকার!',
+  'prizes.lastRaja': 'গত রাজা: {city} থেকে {name}',
+  'prizes.lastRajaStats': '{refs}টি রেফারেল → ₹{prize} জিতেছেন',
+  'prizes.nudgeMessage': 'সাপ্তাহিক লাকি ড্র থেকে আপনি {count}টি রেফারেল দূরে!',
+  'prizes.nudgeCta': 'এখনই রেফার করুন & ₹300 অর্জন করুন →',
+  'prizes.allRewardsStack': 'সব রিওয়ার্ড জমা হয় — প্রতিযোগিতার পুরস্কার রেফারেল রিওয়ার্ডের উপরে',
+
+  // V2 — Leaderboard
+  'leaderboard.nudge': '#{rank} থেকে মাত্র {gap}টি রেফারেল — এখনই শেয়ার করুন!',
+
+  // V2 — Milestones
+  'milestone.1.label': 'প্রথম পুরস্কার',
+  'milestone.1.reward': '₹300 গোল্ড',
+  'milestone.3.label': '₹900 অর্জিত',
+  'milestone.3.reward': 'সঞ্চিত',
+  'milestone.5.label': 'অর্ধেক পথ!',
+  'milestone.5.reward': 'লাকি ড্র',
+  'milestone.7.label': 'লাকি ড্র',
+  'milestone.7.reward': '₹1,000 ড্র',
+  'milestone.10.label': '₹3,000 মোট',
+  'milestone.10.reward': 'চালিয়ে যান!',
+  'milestone.15.label': 'টপ 5',
+  'milestone.15.reward': 'প্রতিদ্বন্দ্বী',
+  'milestone.20.label': '₹6,000 মোট',
+  'milestone.20.reward': 'অসাধারণ!',
+  'milestone.30.label': 'মেগা ড্র',
+  'milestone.30.reward': '₹5,000 ড্র',
 }
 
 export const translations: Record<Locale, TranslationMap> = { en, kn, te, hi, bn }

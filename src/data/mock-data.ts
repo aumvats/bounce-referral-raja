@@ -7,6 +7,7 @@ import type {
   WeekSchedule,
   FAQItem,
   CampaignConfig,
+  Milestone,
 } from '@/types/referral-raja'
 
 // ─── Campaign Config ─────────────────────────────────────────────
@@ -117,6 +118,18 @@ export const socialProof = {
   totalEarned: 48500,
   totalReferrals: 892,
 }
+
+// ─── Milestones (for V2 Journey Track) ──────────────────────────
+export const milestones: Milestone[] = [
+  { refs: 1, labelKey: 'milestone.1.label', rewardKey: 'milestone.1.reward' },
+  { refs: 3, labelKey: 'milestone.3.label', rewardKey: 'milestone.3.reward' },
+  { refs: 5, labelKey: 'milestone.5.label', rewardKey: 'milestone.5.reward' },
+  { refs: 7, labelKey: 'milestone.7.label', rewardKey: 'milestone.7.reward' },
+  { refs: 10, labelKey: 'milestone.10.label', rewardKey: 'milestone.10.reward' },
+  { refs: 15, labelKey: 'milestone.15.label', rewardKey: 'milestone.15.reward' },
+  { refs: 20, labelKey: 'milestone.20.label', rewardKey: 'milestone.20.reward' },
+  { refs: 30, labelKey: 'milestone.30.label', rewardKey: 'milestone.30.reward' },
+]
 
 // ─── Campaign Rules ──────────────────────────────────────────────
 export const campaignRules: string[] = [

@@ -66,6 +66,12 @@ export interface FAQItem {
   answer: string
 }
 
+export interface Milestone {
+  refs: number
+  labelKey: string
+  rewardKey: string
+}
+
 export interface CampaignConfig {
   startDate: string
   endDate: string
