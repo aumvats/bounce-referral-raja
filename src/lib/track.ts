@@ -13,10 +13,10 @@ let geoFetched = false
 function fetchGeo() {
   if (geoFetched) return
   geoFetched = true
-  fetch('http://ip-api.com/json/?fields=city,regionName,countryCode')
+  fetch('/api/geo')
     .then((r) => r.json())
     .then((d) => {
-      geoData = { city: d.city, region: d.regionName, country: d.countryCode }
+      geoData = { city: d.city, region: d.region, country: d.country }
     })
     .catch(() => {})
 }
