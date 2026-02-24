@@ -67,42 +67,51 @@ export default function WinnersSection() {
             {pastCampaignWinners.map((winner, i) => (
               <div
                 key={i}
-                className="shrink-0 w-[140px] rounded-xl overflow-hidden"
+                className="shrink-0 w-[160px] rounded-xl overflow-hidden"
                 style={{
                   background: 'linear-gradient(180deg, #1A1A2E 0%, #16213E 100%)',
                 }}
               >
+                {/* Photo area */}
+                {winner.image ? (
+                  <div className="relative">
+                    <img
+                      src={winner.image}
+                      alt={winner.name}
+                      className="w-full aspect-square object-cover"
+                    />
+                    {/* Gold gradient fade at bottom of photo */}
+                    <div
+                      className="absolute bottom-0 left-0 right-0 h-8"
+                      style={{
+                        background: 'linear-gradient(to top, #1A1A2E, transparent)',
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full aspect-square flex items-center justify-center bg-[#1A1A2E]">
+                    <div
+                      className="w-16 h-16 rounded-full flex items-center justify-center text-[20px] font-black text-white"
+                      style={{
+                        background: 'linear-gradient(135deg, #FFB300 0%, #FF8F00 100%)',
+                        boxShadow: '0 0 16px rgba(255,179,0,0.3)',
+                      }}
+                    >
+                      {winner.name.charAt(0)}
+                    </div>
+                  </div>
+                )}
+
                 {/* Gold accent bar */}
                 <div
-                  className="h-1 w-full"
+                  className="h-0.5 w-full"
                   style={{
                     background: 'linear-gradient(90deg, #FFB300 0%, #FFD54F 50%, #FFB300 100%)',
                   }}
                 />
 
-                <div className="px-3 pt-3 pb-3">
-                  {/* Avatar */}
-                  {winner.image ? (
-                    <img
-                      src={winner.image}
-                      alt={winner.name}
-                      className="w-12 h-12 rounded-full mx-auto object-cover mb-2"
-                      style={{
-                        boxShadow: '0 0 12px rgba(255,179,0,0.3), 0 0 0 2.5px rgba(255,215,0,0.6)',
-                      }}
-                    />
-                  ) : (
-                    <div
-                      className="w-12 h-12 rounded-full mx-auto flex items-center justify-center text-[14px] font-black text-white mb-2"
-                      style={{
-                        background: 'linear-gradient(135deg, #FFB300 0%, #FF8F00 100%)',
-                        boxShadow: '0 0 12px rgba(255,179,0,0.3)',
-                      }}
-                    >
-                      {winner.name.charAt(0)}
-                    </div>
-                  )}
-
+                {/* Info area */}
+                <div className="px-3 pt-2 pb-2.5">
                   {/* Name */}
                   <p className="text-[12px] font-bold text-white text-center truncate">
                     {winner.name}
@@ -114,7 +123,7 @@ export default function WinnersSection() {
                   </p>
 
                   {/* Stats */}
-                  <div className="mt-2 flex items-center justify-center gap-1">
+                  <div className="mt-1.5 flex items-center justify-center gap-1">
                     <span className="text-[10px] font-bold text-white/50">{t('winners.refs', { count: winner.referrals })}</span>
                     <span className="text-[8px] text-white/20">•</span>
                     <span className="text-[11px] font-black text-[#FFD54F]">
@@ -123,7 +132,7 @@ export default function WinnersSection() {
                   </div>
 
                   {/* Campaign tag */}
-                  <div className="mt-2 bg-white/10 rounded-full py-1 px-2 text-center">
+                  <div className="mt-1.5 bg-white/10 rounded-full py-1 px-2 text-center">
                     <p className="text-[8px] font-bold text-white/60 truncate">
                       {winner.campaignName} • {winner.period}
                     </p>
