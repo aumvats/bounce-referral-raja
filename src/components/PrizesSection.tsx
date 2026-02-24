@@ -5,8 +5,13 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { cn } from '@/lib/utils'
 
 export default function PrizesSection() {
+  const { t } = useLanguage()
+
   return (
     <div className="space-y-3">
+      <h2 className="text-[15px] font-black text-gray-900 tracking-tight px-1">
+        {t('prizes.sectionHeader')}
+      </h2>
       <WeeklyPrizesCard />
       <MonthlyMegaCard />
       <PerReferralCard />

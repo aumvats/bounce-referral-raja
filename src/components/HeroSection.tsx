@@ -116,7 +116,7 @@ export default function HeroSection({ onLanguageToggle }: HeroSectionProps) {
             {t('hero.referral')}
           </span>
           <span
-            className="block text-[32px] font-black leading-none tracking-tight"
+            className="block text-[38px] font-black leading-none tracking-tight"
             style={{
               background: 'linear-gradient(135deg, #FFB300 0%, #FFD54F 35%, #FFB300 65%, #FF8F00 100%)',
               WebkitBackgroundClip: 'text',
@@ -128,10 +128,7 @@ export default function HeroSection({ onLanguageToggle }: HeroSectionProps) {
           </span>
         </h1>
 
-        {/* Prize pool — the focal point with shimmer */}
-        <p className="text-[9px] font-bold tracking-[0.15em] text-white/40 uppercase mb-0.5">
-          {t('hero.totalPrizePool')}
-        </p>
+        {/* Prize amount — the focal point with shimmer */}
         <div className="relative overflow-hidden">
           <AnimatedCounter
             target={campaign.totalPrizePool}
@@ -149,8 +146,16 @@ export default function HeroSection({ onLanguageToggle }: HeroSectionProps) {
           />
         </div>
 
-        {/* Countdown — compact inline */}
-        <div className="mt-4 flex items-center gap-0.5 bg-white/20 rounded-full px-5 py-2 backdrop-blur-sm">
+        {/* Campaign dates */}
+        <p className="text-[10px] font-semibold text-white/50 mt-1.5 tracking-wide">
+          20 Feb – 22 Mar 2026
+        </p>
+
+        {/* "Ends In" label + Countdown */}
+        <p className="text-[9px] font-bold tracking-[0.15em] text-white/40 uppercase mt-3 mb-1.5">
+          {t('hero.endsIn')}
+        </p>
+        <div className="flex items-center gap-0.5 bg-white/20 rounded-full px-5 py-2 backdrop-blur-sm">
           {[
             { v: time.days, l: t('hero.countdown.d') },
             { v: time.hours, l: t('hero.countdown.h') },

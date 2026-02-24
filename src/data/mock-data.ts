@@ -14,7 +14,7 @@ import type {
 export const campaign: CampaignConfig = {
   startDate: '2026-02-20T00:00:00+05:30',
   endDate: '2026-03-22T23:59:59+05:30',
-  totalPrizePool: 60000,
+  totalPrizePool: 50000,
   weeklyTopPrize: 5000,
   weeklyLuckyDrawPrize: 1000,
   weeklyLuckyDrawThreshold: 7,

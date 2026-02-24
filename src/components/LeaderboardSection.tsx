@@ -126,14 +126,20 @@ export default function LeaderboardSection() {
             <Podium entries={top3} />
           </div>
 
-          {/* ── Ranked list ── */}
-          <div className="bg-white px-3 pt-2 pb-3">
-            <div className="space-y-0">
+          {/* ── Ranked table (positions 4 & 5) ── */}
+          {rest.length > 0 && (
+            <div className="bg-white px-3 pt-2 pb-3">
+              {/* Column headers */}
+              <div className="flex items-center px-2.5 pb-1.5 border-b border-gray-100">
+                <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider w-8">{t('leaderboard.rankCol')}</span>
+                <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider flex-1">{t('leaderboard.nameCol')}</span>
+                <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider text-right w-12">{t('leaderboard.refsCol')}</span>
+              </div>
               {rest.map((entry, i) => (
                 <RankRow key={entry.rank} entry={entry} isLast={i === rest.length - 1} />
               ))}
             </div>
-          </div>
+          )}
         </>
       )}
     </div>
@@ -307,32 +313,20 @@ function RankRow({ entry, isLast }: { entry: LeaderboardEntry; isLast: boolean }
   return (
     <div
       className={cn(
-        'flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl transition-colors',
-        entry.isCurrentUser && 'bg-[#E53935]/[0.04]',
+        'flex items-center px-2.5 py-2.5 transition-colors',
+        entry.isCurrentUser && 'bg-[#E53935]/[0.04] rounded-lg',
         !isLast && 'border-b border-gray-50'
       )}
     >
       {/* Rank */}
       <span
         className={cn(
-          'text-[12px] font-bold w-5 text-center tabular-nums shrink-0',
+          'text-[12px] font-bold w-8 tabular-nums shrink-0',
           entry.rank <= 5 ? 'text-gray-600' : 'text-gray-400'
         )}
       >
-        {entry.rank}
+        #{entry.rank}
       </span>
-
-      {/* Avatar */}
-      <div
-        className={cn(
-          'w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0',
-          entry.isCurrentUser
-            ? 'bg-[#E53935] text-white'
-            : 'bg-gray-100 text-gray-500'
-        )}
-      >
-        {entry.name.charAt(0)}
-      </div>
 
       {/* Name + badges */}
       <div className="flex-1 min-w-0 flex items-center gap-1.5">
@@ -355,7 +349,7 @@ function RankRow({ entry, isLast }: { entry: LeaderboardEntry; isLast: boolean }
       </div>
 
       {/* Referral count */}
-      <div className="shrink-0 text-right">
+      <div className="shrink-0 text-right w-12">
         <span className="text-[14px] font-black text-gray-800 tabular-nums">
           {entry.referrals}
         </span>
