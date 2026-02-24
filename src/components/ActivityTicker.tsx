@@ -65,7 +65,7 @@ export default function ActivityTicker() {
         setCurrentIndex((i) => (i + 1) % count)
         setVisible(true)
       }, 250)
-    }, 3500)
+    }, 5000)
     return () => clearInterval(interval)
   }, [count])
 
@@ -86,11 +86,11 @@ export default function ActivityTicker() {
           transform: visible ? 'translateY(0)' : 'translateY(4px)',
         }}
       >
-        <span className="w-1.5 h-1.5 rounded-full bg-[#43A047] shrink-0 animate-pulse-subtle" />
-        <p className="text-[10px] text-gray-500">
-          <span className="font-semibold text-gray-700">{name}</span>
+        <span className="w-2 h-2 rounded-full bg-[#43A047] shrink-0 animate-pulse-subtle" />
+        <p className="text-[12px] text-gray-600 font-medium">
+          <span className="font-bold text-gray-800">{name}</span>
           {' '}{t(actionKey)}
-          {!loading && <span className="text-gray-300"> • just now</span>}
+          {!loading && <span className="text-gray-400"> • just now</span>}
         </p>
       </div>
     </div>

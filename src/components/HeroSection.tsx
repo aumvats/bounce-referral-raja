@@ -150,7 +150,7 @@ export default function HeroSection({ onLanguageToggle }: HeroSectionProps) {
         </div>
 
         {/* Countdown — compact inline */}
-        <div className="mt-4 flex items-center gap-0.5 bg-white/10 rounded-full px-4 py-1.5">
+        <div className="mt-4 flex items-center gap-0.5 bg-white/20 rounded-full px-5 py-2 backdrop-blur-sm">
           {[
             { v: time.days, l: t('hero.countdown.d') },
             { v: time.hours, l: t('hero.countdown.h') },
@@ -159,12 +159,12 @@ export default function HeroSection({ onLanguageToggle }: HeroSectionProps) {
           ].map((item, i) => (
             <div key={item.l} className="flex items-center">
               {i > 0 && (
-                <span className="text-[11px] font-bold text-white/20 mx-0.5">:</span>
+                <span className="text-[12px] font-black text-white/40 mx-0.5">:</span>
               )}
-              <span className="text-[13px] font-bold text-white/80 tabular-nums">
+              <span className="text-[15px] font-black text-white tabular-nums">
                 {pad(item.v)}
               </span>
-              <span className="text-[9px] font-medium text-white/35 ml-0.5">
+              <span className="text-[9px] font-bold text-white/60 ml-0.5">
                 {item.l}
               </span>
             </div>
