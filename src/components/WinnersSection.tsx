@@ -82,15 +82,26 @@ export default function WinnersSection() {
 
                 <div className="px-3 pt-3 pb-3">
                   {/* Avatar */}
-                  <div
-                    className="w-10 h-10 rounded-full mx-auto flex items-center justify-center text-[14px] font-black text-white mb-2"
-                    style={{
-                      background: 'linear-gradient(135deg, #FFB300 0%, #FF8F00 100%)',
-                      boxShadow: '0 0 12px rgba(255,179,0,0.3)',
-                    }}
-                  >
-                    {winner.name.charAt(0)}
-                  </div>
+                  {winner.image ? (
+                    <img
+                      src={winner.image}
+                      alt={winner.name}
+                      className="w-12 h-12 rounded-full mx-auto object-cover mb-2"
+                      style={{
+                        boxShadow: '0 0 12px rgba(255,179,0,0.3), 0 0 0 2.5px rgba(255,215,0,0.6)',
+                      }}
+                    />
+                  ) : (
+                    <div
+                      className="w-12 h-12 rounded-full mx-auto flex items-center justify-center text-[14px] font-black text-white mb-2"
+                      style={{
+                        background: 'linear-gradient(135deg, #FFB300 0%, #FF8F00 100%)',
+                        boxShadow: '0 0 12px rgba(255,179,0,0.3)',
+                      }}
+                    >
+                      {winner.name.charAt(0)}
+                    </div>
+                  )}
 
                   {/* Name */}
                   <p className="text-[12px] font-bold text-white text-center truncate">

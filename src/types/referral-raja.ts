@@ -49,6 +49,7 @@ export interface PastCampaignWinner {
   city: string
   referrals: number
   prize: number
+  image?: string
 }
 
 export interface WeekSchedule {

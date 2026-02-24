@@ -105,11 +105,10 @@ export const mockWinnersPopulated: WinnerEntry[] = [
 
 // ─── Past Campaign Winners ──────────────────────────────────────
 export const pastCampaignWinners: PastCampaignWinner[] = [
-  { campaignName: 'Referral Raja', period: 'Jan 2026', name: 'Siddharth K.', city: 'BLR', referrals: 47, prize: 30000 },
-  { campaignName: 'Refer & Ride', period: 'Dec 2025', name: 'Ananya S.', city: 'NCR', referrals: 52, prize: 25000 },
-  { campaignName: 'Refer & Ride', period: 'Nov 2025', name: 'Mohit R.', city: 'BLR', referrals: 38, prize: 25000 },
-  { campaignName: 'Diwali Bonanza', period: 'Oct 2025', name: 'Kavya P.', city: 'NCR', referrals: 61, prize: 50000 },
-  { campaignName: 'Refer & Ride', period: 'Sep 2025', name: 'Harsh V.', city: 'BLR', referrals: 33, prize: 20000 },
+  { campaignName: 'Referral Raja', period: 'Jan 2026', name: 'Deepak', city: 'Bangalore', referrals: 38, prize: 40000, image: '/winners/deepak.jpeg' },
+  { campaignName: 'Referral Raja', period: 'Jan 2026', name: 'Dhanush', city: 'Bangalore', referrals: 22, prize: 40000, image: '/winners/dhanush.jpeg' },
+  { campaignName: 'Referral Raja', period: 'Jan 2026', name: 'Saurabb', city: 'NCR', referrals: 23, prize: 40000, image: '/winners/saurabb.jpeg' },
+  { campaignName: 'Referral Raja', period: 'Jan 2026', name: 'Shivaraj', city: 'Bangalore', referrals: 32, prize: 20000, image: '/winners/shivaraj.jpeg' },
 ]
 
 // ─── Social Proof Counters ───────────────────────────────────────
