@@ -85,8 +85,6 @@ export default function StatusCardV2() {
             </p>
             <a
               href="https://bouncedaily.link/refer"
-              target="_blank"
-              rel="noopener noreferrer"
               className="text-[10px] font-bold text-[#E53935] active:opacity-70"
             >
               {t('status.referNow')}

@@ -133,8 +133,6 @@ export default function LeaderboardSectionV2() {
             {currentUser.gapToNext > 0 && (
               <a
                 href="https://bouncedaily.link/refer"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="mt-2 flex items-center justify-center gap-1 py-2 px-3 bg-[#FFF8E1] rounded-xl active:opacity-80 transition-opacity"
               >
                 <span className="text-[10px]">⚡</span>

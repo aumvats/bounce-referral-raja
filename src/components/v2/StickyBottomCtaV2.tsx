@@ -27,8 +27,6 @@ export default function StickyBottomCtaV2() {
         <a
           ref={btnRef}
           href="https://bouncedaily.link/refer"
-          target="_blank"
-          rel="noopener noreferrer"
           className="block w-full py-3.5 rounded-2xl font-bold text-[15px] text-white tracking-wide transition-all duration-200 active:scale-[0.98] text-center"
           style={{
             background: 'linear-gradient(135deg, #E53935 0%, #C62828 100%)',

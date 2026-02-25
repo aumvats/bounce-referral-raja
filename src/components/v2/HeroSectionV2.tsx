@@ -142,8 +142,6 @@ export default function HeroSectionV2({ onLanguageToggle }: HeroSectionV2Props) 
         {/* Inline CTA — above the fold */}
         <a
           href="https://bouncedaily.link/refer"
-          target="_blank"
-          rel="noopener noreferrer"
           className="mt-4 inline-flex items-center px-6 py-2.5 rounded-full bg-white text-[#E53935] text-[13px] font-black tracking-wide transition-all duration-200 active:scale-[0.97]"
           style={{
             boxShadow: '0 4px 16px rgba(255,255,255,0.25)',
