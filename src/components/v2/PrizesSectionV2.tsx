@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { campaign, currentUser, milestones, pastCampaignWinners, weekSchedule } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { openReferralLink } from '@/lib/deeplink'
 import { useLeaderboard } from '@/hooks/useLeaderboard'
 import AnimatedCounter from '../AnimatedCounter'
 import type { TranslationKey } from '@/data/translations'
@@ -77,6 +78,7 @@ function YourEarningsCard() {
       {/* CTA */}
       <a
         href="https://bouncedaily.link/refer"
+        onClick={(e) => { e.preventDefault(); openReferralLink() }}
         className="block w-full py-3 rounded-xl font-bold text-[14px] text-white tracking-wide transition-all duration-200 active:scale-[0.98] text-center"
         style={{
           background: 'linear-gradient(135deg, #E53935 0%, #C62828 100%)',
@@ -412,6 +414,7 @@ function InlineCTA() {
       </p>
       <a
         href="https://bouncedaily.link/refer"
+        onClick={(e) => { e.preventDefault(); openReferralLink() }}
         className="block w-full py-3 rounded-xl font-bold text-[14px] text-white tracking-wide transition-all duration-200 active:scale-[0.98] text-center"
         style={{
           background: 'linear-gradient(135deg, #E53935 0%, #C62828 100%)',

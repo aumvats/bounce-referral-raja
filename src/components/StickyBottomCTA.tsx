@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext'
 import { track } from '@/lib/track'
+import { openReferralLink } from '@/lib/deeplink'
 
 export default function StickyBottomCTA() {
   const { t } = useLanguage()
@@ -15,7 +16,7 @@ export default function StickyBottomCTA() {
       <div className="bg-[#F5F5F5] px-4 pb-5 pt-1">
         <a
           href="https://bouncedaily.link/refer"
-          onClick={() => track('cta_click', { cta: 'sticky_bottom' })}
+          onClick={(e) => { e.preventDefault(); track('cta_click', { cta: 'sticky_bottom' }); openReferralLink() }}
           className="block w-full py-3.5 rounded-2xl font-bold text-[15px] text-white tracking-wide transition-all duration-200 active:scale-[0.98] text-center"
           style={{
             background: 'linear-gradient(135deg, #E53935 0%, #C62828 100%)',

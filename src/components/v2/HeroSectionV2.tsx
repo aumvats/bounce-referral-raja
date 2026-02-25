@@ -5,6 +5,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import LanguageToggle from '../LanguageToggle'
 import { campaign } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { openReferralLink } from '@/lib/deeplink'
 
 function useCountdown(targetDate: string) {
   const calc = () => {
@@ -142,6 +143,7 @@ export default function HeroSectionV2({ onLanguageToggle }: HeroSectionV2Props) 
         {/* Inline CTA — above the fold */}
         <a
           href="https://bouncedaily.link/refer"
+          onClick={(e) => { e.preventDefault(); openReferralLink() }}
           className="mt-4 inline-flex items-center px-6 py-2.5 rounded-full bg-white text-[#E53935] text-[13px] font-black tracking-wide transition-all duration-200 active:scale-[0.97]"
           style={{
             boxShadow: '0 4px 16px rgba(255,255,255,0.25)',

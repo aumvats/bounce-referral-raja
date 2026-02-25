@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { campaign, currentUser } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { openReferralLink } from '@/lib/deeplink'
 import { useLeaderboard } from '@/hooks/useLeaderboard'
 import type { LeaderboardEntry } from '@/types/referral-raja'
 
@@ -133,6 +134,7 @@ export default function LeaderboardSectionV2() {
             {currentUser.gapToNext > 0 && (
               <a
                 href="https://bouncedaily.link/refer"
+                onClick={(e) => { e.preventDefault(); openReferralLink() }}
                 className="mt-2 flex items-center justify-center gap-1 py-2 px-3 bg-[#FFF8E1] rounded-xl active:opacity-80 transition-opacity"
               >
                 <span className="text-[10px]">⚡</span>

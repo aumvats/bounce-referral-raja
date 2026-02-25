@@ -2,6 +2,7 @@
 
 import { currentUser, campaign } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { openReferralLink } from '@/lib/deeplink'
 import AnimatedCounter from '../AnimatedCounter'
 
 export default function StatusCardV2() {
@@ -85,6 +86,7 @@ export default function StatusCardV2() {
             </p>
             <a
               href="https://bouncedaily.link/refer"
+              onClick={(e) => { e.preventDefault(); openReferralLink() }}
               className="text-[10px] font-bold text-[#E53935] active:opacity-70"
             >
               {t('status.referNow')}
