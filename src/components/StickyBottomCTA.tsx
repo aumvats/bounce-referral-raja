@@ -5,6 +5,7 @@ import { track } from '@/lib/track'
 import { openReferralLink } from '@/lib/deeplink'
 
 export default function StickyBottomCTA() {
+  return null
   const { t } = useLanguage()
 
   return (
