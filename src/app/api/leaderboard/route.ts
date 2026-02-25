@@ -19,7 +19,12 @@ export async function GET() {
       return NextResponse.json({ error: `Supabase returned ${res.status}` }, { status: res.status })
     }
     const data = await res.json()
-    return NextResponse.json(data)
+    // Re-assign sequential ranks (Metabase gives dense ranks with ties)
+    const ranked = data.map((row: Record<string, unknown>, i: number) => ({
+      ...row,
+      rank: i + 1,
+    }))
+    return NextResponse.json(ranked)
   } catch {
     return NextResponse.json({ error: 'Failed to fetch leaderboard' }, { status: 502 })
   }
