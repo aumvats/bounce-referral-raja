@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import { campaign, currentUser } from '@/data/mock-data'
+import { campaign } from '@/data/campaign-data'
+import { currentUser } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
 import { getBridgePhone } from '@/lib/bridge'
@@ -43,10 +44,10 @@ export default function LeaderboardSectionV2() {
 
   const data = liveData.length > 0 ? liveData : []
   const top3 = data.slice(0, 3)
-  const rest = data.slice(3, 5)
+  const rest = data.slice(3)
 
-  // Check if the current user is already in the top entries shown
-  const userInTop = data.some((e) => e.isCurrentUser)
+  // Check if the current user is already in the displayed entries
+  const userInTop = rest.some((e) => e.isCurrentUser) || top3.some((e) => e.isCurrentUser)
 
   // If user has phone but is NOT in top entries, fetch their rank separately
   useEffect(() => {
