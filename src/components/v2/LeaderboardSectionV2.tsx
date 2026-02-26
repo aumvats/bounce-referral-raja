@@ -44,19 +44,19 @@ export default function LeaderboardSectionV2() {
 
   const data = liveData.length > 0 ? liveData : []
   const top3 = data.slice(0, 3)
-  const rest = data.slice(3)
+  const rest = data.slice(3, 5)
 
-  // Check if the current user is already in the displayed entries
-  const userInTop = rest.some((e) => e.isCurrentUser) || top3.some((e) => e.isCurrentUser)
+  // Check if the current user is in the displayed top 5
+  const userInTop5 = top3.some((e) => e.isCurrentUser) || rest.some((e) => e.isCurrentUser)
 
-  // If user has phone but is NOT in top entries, fetch their rank separately
+  // If user has phone but is NOT in displayed top 5, fetch their rank
   useEffect(() => {
-    if (!bridgePhone || userInTop || loading) return
+    if (!bridgePhone || userInTop5 || loading) return
     fetch(`/api/user-rank?phone=${encodeURIComponent(bridgePhone)}`)
       .then((r) => r.json())
       .then((d: UserRank) => setUserRank(d))
       .catch(() => {})
-  }, [bridgePhone, userInTop, loading])
+  }, [bridgePhone, userInTop5, loading])
 
   useEffect(() => {
     const update = () => {
@@ -68,8 +68,8 @@ export default function LeaderboardSectionV2() {
     return () => clearInterval(interval)
   }, [])
 
-  // Show "You" row at bottom if user is outside top entries
-  const showYouRow = !userInTop && userRank?.found && userRank.rank != null
+  // Show "You" row at bottom if user is outside displayed top 5
+  const showYouRow = !userInTop5 && userRank?.found && userRank.rank != null
 
   return (
     <div
