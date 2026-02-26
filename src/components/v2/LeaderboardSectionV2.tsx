@@ -38,20 +38,31 @@ export default function LeaderboardSectionV2() {
 
   // Read phone: bridge → URL param → null
   const [bridgePhone, setBridgePhone] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState<string>('init')
   useEffect(() => {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const win = window as any
+    const hasBridge = typeof win.BounceDailyBridge !== 'undefined'
+    const hasData = typeof win.BounceDailyData !== 'undefined'
+    const rawPhone = win.BounceDailyData?.phoneNumber ?? null
+
     // 1. Try bridge immediately
     const phone = getBridgePhone()
-    if (phone) { setBridgePhone(phone); return }
+    if (phone) { setBridgePhone(phone); setDebugInfo(`bridge:${phone}`); return }
 
     // 2. Fallback: read from ?phone= URL param (app can pass phone in webview URL)
     const urlPhone = new URLSearchParams(window.location.search).get('phone')
-    if (urlPhone) { setBridgePhone(urlPhone); return }
+    if (urlPhone) { setBridgePhone(urlPhone); setDebugInfo(`url:${urlPhone}`); return }
+
+    setDebugInfo(`poll|br=${hasBridge}|data=${hasData}|ph=${rawPhone}`)
 
     // 3. Bridge data injected after onPageFinished — poll briefly
     let attempts = 0
     const interval = setInterval(() => {
       attempts++
       const p = getBridgePhone()
+      const d = win.BounceDailyData
+      setDebugInfo(`poll#${attempts}|br=${typeof win.BounceDailyBridge !== 'undefined'}|d=${!!d}|ph=${d?.phoneNumber ?? 'null'}`)
       if (p || attempts >= 10) {
         if (p) setBridgePhone(p)
         clearInterval(interval)
@@ -98,6 +109,11 @@ export default function LeaderboardSectionV2() {
         boxShadow: '0 2px 12px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03)',
       }}
     >
+      {/* TODO: REMOVE — temporary debug banner */}
+      <div className="bg-yellow-100 px-3 py-1 text-[9px] font-mono text-gray-600 break-all">
+        DBG: {debugInfo} | match:{bridgePhone ? 'yes' : 'no'} | top5:{String(userInTop5)} | youRow:{String(showYouRow)}
+      </div>
+
       {/* ── Header ── */}
       <div className="bg-white px-4 pt-4 pb-3">
         <div className="flex items-center justify-between">
