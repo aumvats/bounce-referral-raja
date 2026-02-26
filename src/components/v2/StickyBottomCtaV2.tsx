@@ -5,7 +5,6 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
 
 export default function StickyBottomCtaV2() {
-  return null
   const { t } = useLanguage()
   const btnRef = useRef<HTMLAnchorElement>(null)
 

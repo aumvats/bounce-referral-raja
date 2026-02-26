@@ -6,6 +6,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { campaign, currentUser } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
+import { getBridgePhone } from '@/lib/bridge'
 import { useLeaderboard } from '@/hooks/useLeaderboard'
 import type { LeaderboardEntry } from '@/types/referral-raja'
 
@@ -20,16 +21,41 @@ function calcWeekTimeLeft(endDate: string) {
   return `${d}d ${h}h ${m}m`
 }
 
+interface UserRank {
+  found: boolean
+  rank?: number
+  name?: string | null
+  referrals?: number
+}
+
 export default function LeaderboardSectionV2() {
   const [tab, setTab] = useState<LeaderboardTab>('weekly')
   const [weekTimeLeft, setWeekTimeLeft] = useState<string | null>(null)
   const [campaignTimeLeft, setCampaignTimeLeft] = useState<string | null>(null)
+  const [userRank, setUserRank] = useState<UserRank | null>(null)
   const { t } = useLanguage()
-  const { data: liveData, loading } = useLeaderboard()
+
+  // Read phone from bridge (injected by Bounce app) — null on old app / external browser
+  const [bridgePhone, setBridgePhone] = useState<string | null>(null)
+  useEffect(() => { setBridgePhone(getBridgePhone()) }, [])
+
+  const { data: liveData, loading } = useLeaderboard(bridgePhone)
 
   const data = liveData.length > 0 ? liveData : []
   const top3 = data.slice(0, 3)
   const rest = data.slice(3, 5)
+
+  // Check if the current user is already in the top entries shown
+  const userInTop = data.some((e) => e.isCurrentUser)
+
+  // If user has phone but is NOT in top entries, fetch their rank separately
+  useEffect(() => {
+    if (!bridgePhone || userInTop || loading) return
+    fetch(`/api/user-rank?phone=${encodeURIComponent(bridgePhone)}`)
+      .then((r) => r.json())
+      .then((d: UserRank) => setUserRank(d))
+      .catch(() => {})
+  }, [bridgePhone, userInTop, loading])
 
   useEffect(() => {
     const update = () => {
@@ -40,6 +66,9 @@ export default function LeaderboardSectionV2() {
     const interval = setInterval(update, 60000)
     return () => clearInterval(interval)
   }, [])
+
+  // Show "You" row at bottom if user is outside top entries
+  const showYouRow = !userInTop && userRank?.found && userRank.rank != null
 
   return (
     <div
@@ -126,8 +155,21 @@ export default function LeaderboardSectionV2() {
           <div className="bg-white px-3 pt-2 pb-3">
             <div className="space-y-0">
               {rest.map((entry, i) => (
-                <RankRow key={entry.rank} entry={entry} isLast={i === rest.length - 1} />
+                <RankRow key={entry.rank} entry={entry} isLast={i === rest.length - 1 && !showYouRow} />
               ))}
+
+              {/* ── "You" row if outside top entries ── */}
+              {showYouRow && (
+                <RankRow
+                  entry={{
+                    rank: userRank!.rank!,
+                    name: userRank!.name || t('leaderboard.you'),
+                    referrals: userRank!.referrals ?? 0,
+                    isCurrentUser: true,
+                  }}
+                  isLast
+                />
+              )}
             </div>
 
             {/* ── V2: Motivational nudge ── */}

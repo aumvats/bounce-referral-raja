@@ -23,6 +23,8 @@ export interface LeaderboardEntry {
   city?: string
   referrals: number
   isCurrentUser?: boolean
+  /** Internal — raw phone for matching, never displayed */
+  phone?: string
 }
 
 export interface ActivityItem {
