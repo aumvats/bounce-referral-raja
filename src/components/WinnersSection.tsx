@@ -1,7 +1,8 @@
 'use client'
 
 import { useRef } from 'react'
-import { winners, pastCampaignWinners, socialProof } from '@/data/mock-data'
+import { winners, pastCampaignWinners } from '@/data/campaign-data'
+import { socialProof } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { track } from '@/lib/track'
 import AnimatedCounter from './AnimatedCounter'

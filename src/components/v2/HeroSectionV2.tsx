@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import LanguageToggle from '../LanguageToggle'
-import { campaign } from '@/data/mock-data'
+import { campaign } from '@/data/campaign-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
 

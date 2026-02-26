@@ -1,6 +1,6 @@
 'use client'
 
-import { campaign, weekSchedule } from '@/data/mock-data'
+import { campaign, weekSchedule } from '@/data/campaign-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { cn } from '@/lib/utils'
 

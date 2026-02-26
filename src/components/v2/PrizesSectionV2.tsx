@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { campaign, currentUser, milestones, pastCampaignWinners, weekSchedule } from '@/data/mock-data'
+import { campaign, milestones, pastCampaignWinners, weekSchedule } from '@/data/campaign-data'
+import { currentUser } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
 import { useLeaderboard } from '@/hooks/useLeaderboard'

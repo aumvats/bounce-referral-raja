@@ -1,6 +1,7 @@
 'use client'
 
-import { currentUser, campaign } from '@/data/mock-data'
+import { campaign } from '@/data/campaign-data'
+import { currentUser } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
 import AnimatedCounter from '../AnimatedCounter'

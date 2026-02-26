@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import AnimatedCounter from './AnimatedCounter'
 import LanguageToggle from './LanguageToggle'
-import { campaign } from '@/data/mock-data'
+import { campaign } from '@/data/campaign-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 function useCountdown(targetDate: string) {
