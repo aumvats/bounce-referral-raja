@@ -6,8 +6,16 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { campaign } from '@/data/campaign-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useLeaderboard } from '@/hooks/useLeaderboard'
+import { getBridgePhone } from '@/lib/bridge'
 import { track } from '@/lib/track'
 import type { LeaderboardEntry } from '@/types/referral-raja'
+
+interface UserRank {
+  found: boolean
+  rank?: number
+  name?: string | null
+  referrals?: number
+}
 
 type LeaderboardTab = 'weekly' | 'campaign'
 
@@ -24,13 +32,60 @@ export default function LeaderboardSection() {
   const [tab, setTab] = useState<LeaderboardTab>('weekly')
   const [weekTimeLeft, setWeekTimeLeft] = useState<string | null>(null)
   const [campaignTimeLeft, setCampaignTimeLeft] = useState<string | null>(null)
+  const [userRank, setUserRank] = useState<UserRank | null>(null)
   const { t } = useLanguage()
-  const { data: liveData, loading } = useLeaderboard()
 
-  // Live data powers both tabs for now (single Metabase query)
+  // Read phone: bridge → URL param → null
+  const [bridgePhone, setBridgePhone] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState<string>('init')
+  useEffect(() => {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const win = window as any
+    const hasBridge = typeof win.BounceDailyBridge !== 'undefined'
+    const hasData = typeof win.BounceDailyData !== 'undefined'
+    const rawPhone = win.BounceDailyData?.phoneNumber ?? null
+
+    const phone = getBridgePhone()
+    if (phone) { setBridgePhone(phone); setDebugInfo(`bridge:${phone}`); return }
+
+    const urlPhone = new URLSearchParams(window.location.search).get('phone')
+    if (urlPhone) { setBridgePhone(urlPhone); setDebugInfo(`url:${urlPhone}`); return }
+
+    setDebugInfo(`poll|br=${hasBridge}|data=${hasData}|ph=${rawPhone}`)
+
+    let attempts = 0
+    const interval = setInterval(() => {
+      attempts++
+      const p = getBridgePhone()
+      const d = win.BounceDailyData
+      setDebugInfo(`poll#${attempts}|br=${typeof win.BounceDailyBridge !== 'undefined'}|d=${!!d}|ph=${d?.phoneNumber ?? 'null'}`)
+      if (p || attempts >= 10) {
+        if (p) setBridgePhone(p)
+        clearInterval(interval)
+      }
+    }, 300)
+    return () => clearInterval(interval)
+  }, [])
+
+  const { data: liveData, loading } = useLeaderboard(bridgePhone)
+
   const data = liveData.length > 0 ? liveData : []
   const top3 = data.slice(0, 3)
   const rest = data.slice(3, 5)
+
+  // Check if user is in displayed top 5
+  const userInTop5 = top3.some((e) => e.isCurrentUser) || rest.some((e) => e.isCurrentUser)
+
+  // If user has phone but NOT in top 5, fetch their rank
+  useEffect(() => {
+    if (!bridgePhone || userInTop5 || loading) return
+    fetch(`/api/user-rank?phone=${encodeURIComponent(bridgePhone)}`)
+      .then((r) => r.json())
+      .then((d: UserRank) => setUserRank(d))
+      .catch(() => {})
+  }, [bridgePhone, userInTop5, loading])
+
+  const showYouRow = !userInTop5 && userRank?.found && userRank.rank != null
 
   useEffect(() => {
     const update = () => {
@@ -49,6 +104,11 @@ export default function LeaderboardSection() {
         boxShadow: '0 2px 12px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03)',
       }}
     >
+      {/* TODO: REMOVE — temporary debug banner */}
+      <div className="bg-yellow-100 px-3 py-1 text-[9px] font-mono text-gray-600 break-all">
+        DBG: {debugInfo} | match:{bridgePhone ? 'yes' : 'no'} | top5:{String(userInTop5)} | youRow:{String(showYouRow)}
+      </div>
+
       {/* ── Header ── */}
       <div className="bg-white px-4 pt-4 pb-3">
         <div className="flex items-center justify-between">
@@ -128,19 +188,34 @@ export default function LeaderboardSection() {
           </div>
 
           {/* ── Ranked table (positions 4 & 5) ── */}
-          {rest.length > 0 && (
-            <div className="bg-white px-3 pt-2 pb-3">
-              {/* Column headers */}
-              <div className="flex items-center px-2.5 pb-1.5 border-b border-gray-100">
-                <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider w-8">{t('leaderboard.rankCol')}</span>
-                <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider flex-1">{t('leaderboard.nameCol')}</span>
-                <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider text-right w-12">{t('leaderboard.refsCol')}</span>
-              </div>
-              {rest.map((entry, i) => (
-                <RankRow key={entry.rank} entry={entry} isLast={i === rest.length - 1} />
-              ))}
-            </div>
-          )}
+          <div className="bg-white px-3 pt-2 pb-3">
+            {rest.length > 0 && (
+              <>
+                {/* Column headers */}
+                <div className="flex items-center px-2.5 pb-1.5 border-b border-gray-100">
+                  <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider w-8">{t('leaderboard.rankCol')}</span>
+                  <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider flex-1">{t('leaderboard.nameCol')}</span>
+                  <span className="text-[8px] font-bold text-gray-400 uppercase tracking-wider text-right w-12">{t('leaderboard.refsCol')}</span>
+                </div>
+                {rest.map((entry, i) => (
+                  <RankRow key={entry.rank} entry={entry} isLast={i === rest.length - 1 && !showYouRow} />
+                ))}
+              </>
+            )}
+
+            {/* "You" row if outside top 5 */}
+            {showYouRow && (
+              <RankRow
+                entry={{
+                  rank: userRank!.rank!,
+                  name: userRank!.name || t('leaderboard.you'),
+                  referrals: userRank!.referrals ?? 0,
+                  isCurrentUser: true,
+                }}
+                isLast
+              />
+            )}
+          </div>
         </>
       )}
     </div>
