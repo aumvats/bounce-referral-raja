@@ -37,8 +37,23 @@ export default function LeaderboardSectionV2() {
   const { t } = useLanguage()
 
   // Read phone from bridge (injected by Bounce app) — null on old app / external browser
+  // Bridge data is injected after onPageFinished, so we poll briefly to catch it
   const [bridgePhone, setBridgePhone] = useState<string | null>(null)
-  useEffect(() => { setBridgePhone(getBridgePhone()) }, [])
+  useEffect(() => {
+    const phone = getBridgePhone()
+    if (phone) { setBridgePhone(phone); return }
+
+    let attempts = 0
+    const interval = setInterval(() => {
+      attempts++
+      const p = getBridgePhone()
+      if (p || attempts >= 10) {
+        if (p) setBridgePhone(p)
+        clearInterval(interval)
+      }
+    }, 300)
+    return () => clearInterval(interval)
+  }, [])
 
   const { data: liveData, loading } = useLeaderboard(bridgePhone)
 
