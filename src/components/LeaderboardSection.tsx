@@ -6,7 +6,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { campaign } from '@/data/campaign-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useLeaderboard } from '@/hooks/useLeaderboard'
-import { getBridgePhone } from '@/lib/bridge'
+import { getBridgePhone, normalizeLast10 } from '@/lib/bridge'
 import { track } from '@/lib/track'
 import type { LeaderboardEntry } from '@/types/referral-raja'
 
@@ -37,28 +37,17 @@ export default function LeaderboardSection() {
 
   // Read phone: bridge → URL param → null
   const [bridgePhone, setBridgePhone] = useState<string | null>(null)
-  const [debugInfo, setDebugInfo] = useState<string>('init')
   useEffect(() => {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    const win = window as any
-    const hasBridge = typeof win.BounceDailyBridge !== 'undefined'
-    const hasData = typeof win.BounceDailyData !== 'undefined'
-    const rawPhone = win.BounceDailyData?.phoneNumber ?? null
-
     const phone = getBridgePhone()
-    if (phone) { setBridgePhone(phone); setDebugInfo(`bridge:${phone}`); return }
+    if (phone) { setBridgePhone(phone); return }
 
     const urlPhone = new URLSearchParams(window.location.search).get('phone')
-    if (urlPhone) { setBridgePhone(urlPhone); setDebugInfo(`url:${urlPhone}`); return }
-
-    setDebugInfo(`poll|br=${hasBridge}|data=${hasData}|ph=${rawPhone}`)
+    if (urlPhone) { setBridgePhone(urlPhone); return }
 
     let attempts = 0
     const interval = setInterval(() => {
       attempts++
       const p = getBridgePhone()
-      const d = win.BounceDailyData
-      setDebugInfo(`poll#${attempts}|br=${typeof win.BounceDailyBridge !== 'undefined'}|d=${!!d}|ph=${d?.phoneNumber ?? 'null'}`)
       if (p || attempts >= 10) {
         if (p) setBridgePhone(p)
         clearInterval(interval)
@@ -85,7 +74,9 @@ export default function LeaderboardSection() {
       .catch(() => {})
   }, [bridgePhone, userInTop5, loading])
 
-  const showYouRow = !userInTop5 && userRank?.found && userRank.rank != null
+  // Show "You" row if user has phone, is not in top 5, and rank fetch is done
+  const userRankFetched = userRank !== null
+  const showYouRow = !userInTop5 && bridgePhone != null && !loading && userRankFetched
 
   useEffect(() => {
     const update = () => {
@@ -104,11 +95,6 @@ export default function LeaderboardSection() {
         boxShadow: '0 2px 12px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03)',
       }}
     >
-      {/* TODO: REMOVE — temporary debug banner */}
-      <div className="bg-yellow-100 px-3 py-1 text-[9px] font-mono text-gray-600 break-all">
-        DBG: {debugInfo} | match:{bridgePhone ? 'yes' : 'no'} | top5:{String(userInTop5)} | youRow:{String(showYouRow)}
-      </div>
-
       {/* ── Header ── */}
       <div className="bg-white px-4 pt-4 pb-3">
         <div className="flex items-center justify-between">
@@ -189,7 +175,7 @@ export default function LeaderboardSection() {
 
           {/* ── Ranked table (positions 4 & 5) ── */}
           <div className="bg-white px-3 pt-2 pb-3">
-            {rest.length > 0 && (
+            {(rest.length > 0 || showYouRow) && (
               <>
                 {/* Column headers */}
                 <div className="flex items-center px-2.5 pb-1.5 border-b border-gray-100">
@@ -207,12 +193,15 @@ export default function LeaderboardSection() {
             {showYouRow && (
               <RankRow
                 entry={{
-                  rank: userRank!.rank!,
-                  name: userRank!.name || t('leaderboard.you'),
-                  referrals: userRank!.referrals ?? 0,
+                  rank: userRank?.found ? userRank.rank! : 0,
+                  name: userRank?.found
+                    ? (userRank.name || t('leaderboard.you'))
+                    : maskPhoneDisplay(bridgePhone!),
+                  referrals: userRank?.found ? (userRank.referrals ?? 0) : 0,
                   isCurrentUser: true,
                 }}
                 isLast
+                subtext={!userRank?.found ? t('leaderboard.startReferring') : undefined}
               />
             )}
           </div>
@@ -381,10 +370,21 @@ function PodiumSlot({
   )
 }
 
+/* ─── Helpers ─────────────────────────────────────────── */
+
+function maskPhoneDisplay(phone: string): string {
+  const digits = normalizeLast10(phone)
+  if (digits.length >= 10) {
+    return `${digits.slice(0, 3)}***${digits.slice(-4)}`
+  }
+  return '***'
+}
+
 /* ─── Rank Row ─────────────────────────────────────────── */
 
-function RankRow({ entry, isLast }: { entry: LeaderboardEntry; isLast: boolean }) {
+function RankRow({ entry, isLast, subtext }: { entry: LeaderboardEntry; isLast: boolean; subtext?: string }) {
   const { t } = useLanguage()
+  const isUnranked = entry.rank === 0
 
   return (
     <div
@@ -398,29 +398,34 @@ function RankRow({ entry, isLast }: { entry: LeaderboardEntry; isLast: boolean }
       <span
         className={cn(
           'text-[12px] font-bold w-8 tabular-nums shrink-0',
-          entry.rank <= 5 ? 'text-gray-600' : 'text-gray-400'
+          isUnranked ? 'text-gray-400' : entry.rank <= 5 ? 'text-gray-600' : 'text-gray-400'
         )}
       >
-        #{entry.rank}
+        {isUnranked ? t('leaderboard.rankNA') : `#${entry.rank}`}
       </span>
 
-      {/* Name + badges */}
-      <div className="flex-1 min-w-0 flex items-center gap-1.5">
-        <p className={cn(
-          'text-[12px] font-semibold text-gray-800 truncate',
-          entry.isCurrentUser && 'text-[#E53935] font-bold'
-        )}>
-          {entry.name}
-        </p>
-        {entry.isCurrentUser && (
-          <span className="shrink-0 px-1.5 py-0.5 rounded-full text-[7px] font-extrabold bg-[#E53935] text-white uppercase tracking-wider">
-            {t('leaderboard.you')}
-          </span>
-        )}
-        {entry.city && (
-          <span className="shrink-0 text-[8px] font-semibold text-gray-400 bg-gray-50 px-1.5 py-0.5 rounded-full">
-            {entry.city}
-          </span>
+      {/* Name + badges + subtext */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-1.5">
+          <p className={cn(
+            'text-[12px] font-semibold text-gray-800 truncate',
+            entry.isCurrentUser && 'text-[#E53935] font-bold'
+          )}>
+            {entry.name}
+          </p>
+          {entry.isCurrentUser && (
+            <span className="shrink-0 px-1.5 py-0.5 rounded-full text-[7px] font-extrabold bg-[#E53935] text-white uppercase tracking-wider">
+              {t('leaderboard.you')}
+            </span>
+          )}
+          {entry.city && (
+            <span className="shrink-0 text-[8px] font-semibold text-gray-400 bg-gray-50 px-1.5 py-0.5 rounded-full">
+              {entry.city}
+            </span>
+          )}
+        </div>
+        {subtext && (
+          <p className="text-[9px] font-semibold text-[#E53935]/70 mt-0.5">{subtext}</p>
         )}
       </div>
 

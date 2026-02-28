@@ -55,6 +55,8 @@ const en = {
   'leaderboard.rankCol': 'Rank',
   'leaderboard.nameCol': 'Name',
   'leaderboard.refsCol': 'Refs',
+  'leaderboard.startReferring': 'Start Referring Now',
+  'leaderboard.rankNA': 'N/A',
 
   // Prizes
   'prizes.sectionHeader': 'Rewards & Prizes',
@@ -229,6 +231,8 @@ const kn: TranslationMap = {
   'leaderboard.rankCol': 'ಶ್ರೇಣಿ',
   'leaderboard.nameCol': 'ಹೆಸರು',
   'leaderboard.refsCol': 'ರೆಫ್ಸ್',
+  'leaderboard.startReferring': 'ಈಗ ರೆಫರ್ ಮಾಡಲು ಶುರು ಮಾಡಿ',
+  'leaderboard.rankNA': 'N/A',
 
   'prizes.sectionHeader': 'ಬಹುಮಾನಗಳು & ಪ್ರಶಸ್ತಿಗಳು',
   'prizes.everyWeek': 'ಪ್ರತಿ ವಾರ',
@@ -391,6 +395,8 @@ const te: TranslationMap = {
   'leaderboard.rankCol': 'ర్యాంక్',
   'leaderboard.nameCol': 'పేరు',
   'leaderboard.refsCol': 'రెఫ్స్',
+  'leaderboard.startReferring': 'ఇప్పుడు రెఫర్ చేయడం ప్రారంభించండి',
+  'leaderboard.rankNA': 'N/A',
 
   'prizes.sectionHeader': 'రివార్డ్‌లు & ప్రైజ్‌లు',
   'prizes.everyWeek': 'ప్రతి వారం',
@@ -553,6 +559,8 @@ const hi: TranslationMap = {
   'leaderboard.rankCol': 'रैंक',
   'leaderboard.nameCol': 'नाम',
   'leaderboard.refsCol': 'रेफ्स',
+  'leaderboard.startReferring': 'अभी रेफर करना शुरू करें',
+  'leaderboard.rankNA': 'N/A',
 
   'prizes.sectionHeader': 'रिवॉर्ड और प्राइज़',
   'prizes.everyWeek': 'हर हफ्ते',
@@ -715,6 +723,8 @@ const bn: TranslationMap = {
   'leaderboard.rankCol': 'র‍্যাঙ্ক',
   'leaderboard.nameCol': 'নাম',
   'leaderboard.refsCol': 'রেফ',
+  'leaderboard.startReferring': 'এখনই রেফার করা শুরু করুন',
+  'leaderboard.rankNA': 'N/A',
 
   'prizes.sectionHeader': 'রিওয়ার্ড ও প্রাইজ',
   'prizes.everyWeek': 'প্রতি সপ্তাহে',
