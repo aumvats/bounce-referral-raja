@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import LanguageToggle from '../LanguageToggle'
-import { campaign } from '@/data/campaign-data'
+import { campaign, getCurrentWeekInfo } from '@/data/campaign-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
 
@@ -46,7 +46,7 @@ interface HeroSectionV2Props {
 
 export default function HeroSectionV2({ onLanguageToggle }: HeroSectionV2Props) {
   // Weekly countdown — more urgent than campaign-level
-  const time = useCountdown(campaign.weekEndDate)
+  const time = useCountdown(getCurrentWeekInfo().weekEndDate)
   const { t } = useLanguage()
 
   return (
@@ -154,7 +154,7 @@ export default function HeroSectionV2({ onLanguageToggle }: HeroSectionV2Props) 
 
         {/* Weekly countdown — urgency */}
         <p className="mt-4 text-[9px] font-bold tracking-[0.12em] text-white/50 uppercase">
-          {t('hero.weekEndsIn', { week: campaign.currentWeek })}
+          {t('hero.weekEndsIn', { week: getCurrentWeekInfo().currentWeek })}
         </p>
         <div className="mt-1.5 flex items-center gap-0.5 bg-white/20 rounded-full px-5 py-2 backdrop-blur-sm">
           {[

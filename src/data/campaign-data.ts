@@ -1,6 +1,7 @@
 import type {
   CampaignConfig,
   WeekSchedule,
+  WeekInfo,
   WinnerEntry,
   PastCampaignWinner,
   Milestone,
@@ -19,17 +20,50 @@ export const campaign: CampaignConfig = {
   monthlyLuckyDrawPrize: 5000,
   monthlyLuckyDrawWinners: 1,
   monthlyLuckyDrawThreshold: 30,
-  currentWeek: 1,
-  weekEndDate: '2026-03-01T23:59:59+05:30',
 }
 
 // ─── Week Schedule ───────────────────────────────────────────────
 export const weekSchedule: WeekSchedule[] = [
-  { week: 1, label: 'Week 1', startDate: '23 Feb', endDate: '1 Mar', isActive: true, isCompleted: false },
-  { week: 2, label: 'Week 2', startDate: '2 Mar', endDate: '8 Mar', isActive: false, isCompleted: false },
-  { week: 3, label: 'Week 3', startDate: '9 Mar', endDate: '15 Mar', isActive: false, isCompleted: false },
-  { week: 4, label: 'Week 4', startDate: '16 Mar', endDate: '22 Mar', isActive: false, isCompleted: false },
+  { week: 1, label: 'Week 1', startDate: '23 Feb', endDate: '1 Mar', startISO: '2026-02-23T00:00:00+05:30', endISO: '2026-03-01T23:59:59+05:30' },
+  { week: 2, label: 'Week 2', startDate: '2 Mar', endDate: '8 Mar', startISO: '2026-03-02T00:00:00+05:30', endISO: '2026-03-08T23:59:59+05:30' },
+  { week: 3, label: 'Week 3', startDate: '9 Mar', endDate: '15 Mar', startISO: '2026-03-09T00:00:00+05:30', endISO: '2026-03-15T23:59:59+05:30' },
+  { week: 4, label: 'Week 4', startDate: '16 Mar', endDate: '22 Mar', startISO: '2026-03-16T00:00:00+05:30', endISO: '2026-03-22T23:59:59+05:30' },
 ]
+
+// ─── Auto-compute current week from dates ────────────────────────
+export function getCurrentWeekInfo(): WeekInfo {
+  const now = new Date()
+
+  const active = weekSchedule.find(w => {
+    return now >= new Date(w.startISO) && now <= new Date(w.endISO)
+  })
+
+  const activeSchedule = weekSchedule.map(w => ({
+    ...w,
+    isActive: active ? w.week === active.week : false,
+    isCompleted: active ? w.week < active.week : true,
+  }))
+
+  if (active) {
+    return {
+      currentWeek: active.week,
+      weekEndDate: active.endISO,
+      weekStartISO: active.startISO,
+      weekEndISO: active.endISO,
+      activeSchedule,
+    }
+  }
+
+  // Campaign ended or between weeks — fall back to last week
+  const lastWeek = weekSchedule[weekSchedule.length - 1]
+  return {
+    currentWeek: lastWeek.week,
+    weekEndDate: lastWeek.endISO,
+    weekStartISO: lastWeek.startISO,
+    weekEndISO: lastWeek.endISO,
+    activeSchedule,
+  }
+}
 
 // ─── Winners (empty for Week 1) ─────────────────────────────────
 export const winners: WinnerEntry[] = []

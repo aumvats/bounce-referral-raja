@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { campaign, milestones, pastCampaignWinners, weekSchedule } from '@/data/campaign-data'
+import { campaign, milestones, pastCampaignWinners, getCurrentWeekInfo } from '@/data/campaign-data'
 import { currentUser } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
@@ -204,7 +204,8 @@ function WeeklyPrizeCard() {
   const { t } = useLanguage()
   const { data: liveData } = useLeaderboard()
   const user = currentUser
-  const activeWeek = weekSchedule.find((w) => w.isActive)
+  const { activeSchedule, weekEndDate } = getCurrentWeekInfo()
+  const activeWeek = activeSchedule.find((w) => w.isActive)
   const threshold = campaign.weeklyLuckyDrawThreshold
   const remaining = Math.max(0, threshold - user.luckyDrawProgress)
   const progress = Math.min(user.luckyDrawProgress / threshold, 1)
@@ -218,7 +219,7 @@ function WeeklyPrizeCard() {
   const [timeLeft, setTimeLeft] = useState('')
   useEffect(() => {
     const calc = () => {
-      const diff = new Date(campaign.weekEndDate).getTime() - Date.now()
+      const diff = new Date(weekEndDate).getTime() - Date.now()
       if (diff <= 0) return 'Ended'
       const d = Math.floor(diff / 86400000)
       const h = Math.floor((diff % 86400000) / 3600000)

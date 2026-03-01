@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import { campaign } from '@/data/campaign-data'
+import { campaign, getCurrentWeekInfo } from '@/data/campaign-data'
 import { currentUser } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
@@ -91,7 +91,7 @@ export default function LeaderboardSectionV2() {
 
   useEffect(() => {
     const update = () => {
-      setWeekTimeLeft(calcWeekTimeLeft(campaign.weekEndDate))
+      setWeekTimeLeft(calcWeekTimeLeft(getCurrentWeekInfo().weekEndDate))
       setCampaignTimeLeft(calcWeekTimeLeft(campaign.endDate))
     }
     update()

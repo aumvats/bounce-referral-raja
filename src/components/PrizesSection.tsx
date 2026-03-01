@@ -1,6 +1,6 @@
 'use client'
 
-import { campaign, weekSchedule } from '@/data/campaign-data'
+import { campaign, getCurrentWeekInfo } from '@/data/campaign-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { cn } from '@/lib/utils'
 
@@ -20,7 +20,8 @@ export default function PrizesSection() {
 }
 
 function WeeklyPrizesCard() {
-  const activeWeek = weekSchedule.find((w) => w.isActive)
+  const { activeSchedule } = getCurrentWeekInfo()
+  const activeWeek = activeSchedule.find((w) => w.isActive)
   const { t } = useLanguage()
 
   return (

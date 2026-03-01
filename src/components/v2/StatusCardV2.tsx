@@ -1,6 +1,6 @@
 'use client'
 
-import { campaign } from '@/data/campaign-data'
+import { campaign, getCurrentWeekInfo } from '@/data/campaign-data'
 import { currentUser } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { openReferralLink } from '@/lib/deeplink'
@@ -24,7 +24,7 @@ export default function StatusCardV2() {
               {t('status.yourRank')}
             </p>
             <p className="text-[8px] font-semibold text-gray-400 mb-0.5">
-              {t('status.weekLabel', { week: campaign.currentWeek })}
+              {t('status.weekLabel', { week: getCurrentWeekInfo().currentWeek })}
             </p>
             <p className="text-[34px] font-black leading-none text-[#E53935]">
               #{user.weeklyRank}

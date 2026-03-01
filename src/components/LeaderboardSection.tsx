@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import { campaign } from '@/data/campaign-data'
+import { campaign, getCurrentWeekInfo } from '@/data/campaign-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useLeaderboard } from '@/hooks/useLeaderboard'
 import { getBridgePhone, normalizeLast10 } from '@/lib/bridge'
@@ -56,7 +56,7 @@ export default function LeaderboardSection() {
     return () => clearInterval(interval)
   }, [])
 
-  const { data: liveData, loading } = useLeaderboard(bridgePhone)
+  const { data: liveData, loading } = useLeaderboard(bridgePhone, tab)
 
   const data = liveData.length > 0 ? liveData : []
   const top3 = data.slice(0, 3)
@@ -65,14 +65,17 @@ export default function LeaderboardSection() {
   // Check if user is in displayed top 5
   const userInTop5 = top3.some((e) => e.isCurrentUser) || rest.some((e) => e.isCurrentUser)
 
+  // Reset user rank when tab changes
+  useEffect(() => { setUserRank(null) }, [tab])
+
   // If user has phone but NOT in top 5, fetch their rank
   useEffect(() => {
     if (!bridgePhone || userInTop5 || loading) return
-    fetch(`/api/user-rank?phone=${encodeURIComponent(bridgePhone)}`)
+    fetch(`/api/user-rank?phone=${encodeURIComponent(bridgePhone)}&period=${tab}`)
       .then((r) => r.json())
       .then((d: UserRank) => setUserRank(d))
       .catch(() => {})
-  }, [bridgePhone, userInTop5, loading])
+  }, [bridgePhone, userInTop5, loading, tab])
 
   // Show "You" row if user has phone, is not in top 5, and rank fetch is done
   const userRankFetched = userRank !== null
@@ -80,7 +83,8 @@ export default function LeaderboardSection() {
 
   useEffect(() => {
     const update = () => {
-      setWeekTimeLeft(calcWeekTimeLeft(campaign.weekEndDate))
+      const { weekEndDate } = getCurrentWeekInfo()
+      setWeekTimeLeft(calcWeekTimeLeft(weekEndDate))
       setCampaignTimeLeft(calcWeekTimeLeft(campaign.endDate))
     }
     update()

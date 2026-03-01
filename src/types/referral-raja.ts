@@ -59,8 +59,14 @@ export interface WeekSchedule {
   label: string
   startDate: string
   endDate: string
-  isActive: boolean
-  isCompleted: boolean
+  /** ISO 8601 with timezone, e.g. '2026-02-23T00:00:00+05:30' */
+  startISO: string
+  /** ISO 8601 with timezone, e.g. '2026-03-01T23:59:59+05:30' */
+  endISO: string
+  /** Computed at runtime by getCurrentWeekInfo() */
+  isActive?: boolean
+  /** Computed at runtime by getCurrentWeekInfo() */
+  isCompleted?: boolean
 }
 
 export interface FAQItem {
@@ -85,8 +91,14 @@ export interface CampaignConfig {
   monthlyLuckyDrawPrize: number
   monthlyLuckyDrawWinners: number
   monthlyLuckyDrawThreshold: number
+}
+
+export interface WeekInfo {
   currentWeek: number
   weekEndDate: string
+  weekStartISO: string
+  weekEndISO: string
+  activeSchedule: (WeekSchedule & { isActive: boolean; isCompleted: boolean })[]
 }
 
 export const TIER_CONFIG: Record<Tier, { label: string; color: string; bg: string }> = {

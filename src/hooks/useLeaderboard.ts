@@ -41,17 +41,18 @@ function toLeaderboardEntry(row: MetabaseRow, currentPhone: string | null): Lead
   }
 }
 
-export function useLeaderboard(currentPhone?: string | null) {
+export function useLeaderboard(currentPhone?: string | null, period: 'weekly' | 'campaign' = 'campaign') {
   const [data, setData] = useState<LeaderboardEntry[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
+    setLoading(true)
 
     async function fetchData() {
       try {
-        const res = await fetch(LEADERBOARD_URL)
+        const res = await fetch(`${LEADERBOARD_URL}?period=${period}`)
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         const rows: MetabaseRow[] = await res.json()
 
@@ -69,7 +70,7 @@ export function useLeaderboard(currentPhone?: string | null) {
 
     fetchData()
     return () => { cancelled = true }
-  }, [currentPhone])
+  }, [currentPhone, period])
 
   return { data, loading, error }
 }
