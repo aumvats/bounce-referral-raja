@@ -157,6 +157,19 @@ export default function LeaderboardSection() {
           <div className="w-5 h-5 border-2 border-white/20 border-t-[#FFB300] rounded-full animate-spin" />
           <p className="text-[10px] font-semibold text-white/40">Loading leaderboard…</p>
         </div>
+      ) : data.length === 0 ? (
+        <div
+          className="px-4 py-10 flex flex-col items-center justify-center gap-1.5"
+          style={{ background: 'linear-gradient(180deg, #1A1A2E 0%, #16213E 100%)' }}
+        >
+          <span className="text-[32px] mb-1">🚀</span>
+          <p className="text-[14px] font-black text-white">
+            {t('leaderboard.emptyWeekTitle', { week: getCurrentWeekInfo().currentWeek })}
+          </p>
+          <p className="text-[11px] text-white/50 font-semibold text-center">
+            {t('leaderboard.emptyWeekSubtitle')}
+          </p>
+        </div>
       ) : (
         <>
           {/* ── Podium — dark dramatic section ── */}

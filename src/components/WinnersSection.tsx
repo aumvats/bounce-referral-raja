@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef } from 'react'
-import { winners, pastCampaignWinners } from '@/data/campaign-data'
+import { useState, useEffect } from 'react'
+import { winners, pastCampaignWinners, getCurrentWeekInfo, weekSchedule } from '@/data/campaign-data'
 import { socialProof } from '@/data/mock-data'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { track } from '@/lib/track'
@@ -47,15 +47,7 @@ export default function WinnersSection() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-4">
-            <span className="text-[36px] block mb-2">🏆</span>
-            <p className="text-[13px] font-bold text-gray-700 mb-0.5">
-              {t('winners.emptyTitle')}
-            </p>
-            <p className="text-[11px] text-[#E53935] font-semibold">
-              {t('winners.emptySubtitle')}
-            </p>
-          </div>
+          <WinnerAnnouncementEmpty />
         )}
       </div>
 
@@ -171,6 +163,83 @@ export default function WinnersSection() {
           />
         </div>
       </div>
+    </div>
+  )
+}
+
+/* ─── Winner Announcement Empty State ─── */
+
+function getAnnouncementDate(): { weekNum: number; date: Date } | null {
+  const { activeSchedule } = getCurrentWeekInfo()
+  // Find the most recently completed week
+  const completedWeeks = activeSchedule.filter(w => w.isCompleted)
+  if (completedWeeks.length === 0) return null
+
+  const lastCompleted = completedWeeks[completedWeeks.length - 1]
+  // Wednesday after the week ends (3 days after endISO)
+  const weekEnd = new Date(lastCompleted.endISO)
+  const wednesday = new Date(weekEnd)
+  wednesday.setDate(wednesday.getDate() + 3)
+  // Set to end of day IST (23:59:59)
+  wednesday.setHours(23, 59, 59, 0)
+
+  return { weekNum: lastCompleted.week, date: wednesday }
+}
+
+function WinnerAnnouncementEmpty() {
+  const { t } = useLanguage()
+  const announcement = getAnnouncementDate()
+  const [countdown, setCountdown] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!announcement) return
+
+    const update = () => {
+      const diff = announcement.date.getTime() - Date.now()
+      if (diff <= 0) {
+        setCountdown(null)
+        return
+      }
+      const d = Math.floor(diff / 86400000)
+      const h = Math.floor((diff % 86400000) / 3600000)
+      const m = Math.floor((diff % 3600000) / 60000)
+      setCountdown(`${d}d ${h}h ${m}m`)
+    }
+    update()
+    const interval = setInterval(update, 60000)
+    return () => clearInterval(interval)
+  }, [announcement])
+
+  // No completed weeks yet — show original empty state
+  if (!announcement) {
+    return (
+      <div className="text-center py-4">
+        <span className="text-[36px] block mb-2">🏆</span>
+        <p className="text-[13px] font-bold text-gray-700 mb-0.5">
+          {t('winners.emptyTitle')}
+        </p>
+        <p className="text-[11px] text-[#E53935] font-semibold">
+          {t('winners.emptySubtitle')}
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="text-center py-4">
+      <span className="text-[36px] block mb-2">🏆</span>
+      <p className="text-[13px] font-bold text-gray-700 mb-0.5">
+        {t('winners.announcementTitle', { week: announcement.weekNum })}
+      </p>
+      {countdown && (
+        <p className="text-[10px] font-semibold text-gray-400 mt-1">
+          {t('winners.announcementCountdown')}{' '}
+          <span className="text-[#E53935] font-bold">{countdown}</span>
+        </p>
+      )}
+      <p className="text-[11px] text-[#E53935] font-semibold mt-1">
+        {t('winners.emptySubtitle')}
+      </p>
     </div>
   )
 }
