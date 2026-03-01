@@ -52,7 +52,7 @@ export async function GET(req: NextRequest) {
 
       // Query raw referrals table filtered to current week
       const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/referral_raja_referrals_raw?select=referer_id,full_name,phone_number,created_at_ist&created_at_ist=gte.${weekStartISO}&created_at_ist=lte.${weekEndISO}`,
+        `${SUPABASE_URL}/rest/v1/referral_raja_referrals_raw?select=referer_id,full_name,phone_number,created_at_ist&created_at_ist=gte.${encodeURIComponent(weekStartISO)}&created_at_ist=lte.${encodeURIComponent(weekEndISO)}`,
         { headers: supabaseHeaders, next: { revalidate: 30 } }
       )
       if (!res.ok) {
